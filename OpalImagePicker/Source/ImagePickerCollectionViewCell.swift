@@ -19,7 +19,7 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    var selectionTintColor: UIColor = UIColor.black.withAlphaComponent(0.7) {
+    var selectionTintColor: UIColor = UIColor.black.withAlphaComponent(0.8) {
         didSet {
             overlayView?.backgroundColor = selectionTintColor
         }
