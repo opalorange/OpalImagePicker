@@ -73,4 +73,4 @@ We would love you to contribute to **OpalImagePicker**
 
 ## License
 
-**ImagePicker** is available under the MIT license. See the [LICENSE](https://github.com/opalorange/OpalImagePicker/blob/master/LICENSE.md) file for more info.
+**OpalImagePicker** is available under the MIT license. See the [LICENSE](https://github.com/opalorange/OpalImagePicker/blob/master/LICENSE.md) file for more info.
