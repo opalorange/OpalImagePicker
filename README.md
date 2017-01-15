@@ -1,4 +1,4 @@
-![OpalImagePicker](https://github.com/opalorange/OpalImagePicker/Resources/OpalImagePickerPresentation.jpg)
+![OpalImagePicker](https://github.com/opalorange/OpalImagePicker/blob/master/Resources/OpalImagePickerPresentation.png)
 
 ![Swift](https://img.shields.io/badge/%20in-swift%203.0-orange.svg)
 
