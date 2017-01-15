@@ -1,0 +1,6 @@
+framework module OpalImagePicker {
+  umbrella header "OpalImagePicker-umbrella.h"
+
+  export *
+  module * { export * }
+}

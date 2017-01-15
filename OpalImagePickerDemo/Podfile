@@ -1,0 +1,14 @@
+
+platform :ios, '9.0'
+
+target 'OpalImagePickerDemo' do
+  use_frameworks!
+
+  pod 'OpalImagePicker', path: '..'
+
+  target 'OpalImagePickerDemoTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
