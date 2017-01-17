@@ -7,22 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0FCF51996D84B857457E28878E183A7C /* OpalImagePicker-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E9C294E9C49F96FCFE79D53B24D9CA6F /* OpalImagePicker-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		10C9D2917C1614AE5ADAC06AAF0AED2B /* OpalImagePickerResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 69A1B148F81FBC42646585866816E570 /* OpalImagePickerResources.bundle */; };
 		2241BD2620FF96FB5FBC304AE9EB4481 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
 		229BBC62F1DF3A989AE0CF3EC984A7AC /* Pods-OpalImagePickerDemoTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E3E9285A3D6529292BBC1D7754F1B69 /* Pods-OpalImagePickerDemoTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		313AFD4D9DBB6DDC1AD3BDF2C68ED309 /* OpalImagePickerCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319295439E93BFE45D756BC618674F93 /* OpalImagePickerCollectionViewLayout.swift */; };
-		3798F6D940A3466F18770D401B501015 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		58AD687AD205F7C483D40B3C60531CA1 /* OpalImagePicker-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 933412A8955F3B9A3997FFBA39E4CAB1 /* OpalImagePicker-dummy.m */; };
 		689E9FDD9C972FE621595449AA3669AC /* Pods-OpalImagePickerDemo-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 020FE0BCBB90D71CF58AE6E4BAF60069 /* Pods-OpalImagePickerDemo-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6B33B45087DADCF702ADD150F2DEDB96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 512DCB4463C7A381637811FAA97893D5 /* Assets.xcassets */; };
-		853B313B79810AE7DA78ABF1D40CAD4A /* UIViewController+OpalImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EE1D15E3E9CFEA26E0E60BB1E3E596 /* UIViewController+OpalImagePicker.swift */; };
-		884C32D4E0EA6EF209CEF9482FECF357 /* OpalImagePicker-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 933412A8955F3B9A3997FFBA39E4CAB1 /* OpalImagePicker-dummy.m */; };
-		8FEBD21A95396D370256767C4EF24B6F /* Bundle+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8FA082F9C6661A37A14BBB66F1DDCE /* Bundle+Helper.swift */; };
+		755C143F3862482107C10E7B55CB5C3C /* ImagePickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED530992BDE14958943BB7B2F4F69BF8 /* ImagePickerCollectionViewCell.swift */; };
+		7E28CEA51B308A7250B7E5542DA1E277 /* OpalImagePicker-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E9C294E9C49F96FCFE79D53B24D9CA6F /* OpalImagePicker-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		906D91027983E880BC630534F5BDDB66 /* Pods-OpalImagePickerDemo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1025D0DAF80F8C37063DA3DCF5857512 /* Pods-OpalImagePickerDemo-dummy.m */; };
-		973BBD5F17D0D5AABFED7809B9BABDD6 /* ImagePickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E6E0B96B8B2AF4FAC016F1A0912C79 /* ImagePickerCollectionViewCell.swift */; };
+		927120BA6197522987C1C2757C2AE3D2 /* Bundle+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D776B0AE62B89E7EBA3343EED10B2E3 /* Bundle+Helper.swift */; };
+		97D6A52A0ED368D812684B2B369CD020 /* UIViewController+OpalImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF5385395520D56406235515D712DA3 /* UIViewController+OpalImagePicker.swift */; };
+		98A1E662AAF0696273E2C9F070A41DE1 /* OpalImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D13FD4939BAE37E7041741EA204C52 /* OpalImagePickerController.swift */; };
+		9E00359BC162CB897CEC50A22E012C67 /* OpalImagePickerResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 69A1B148F81FBC42646585866816E570 /* OpalImagePickerResources.bundle */; };
+		A4C3982BB846A98A4AC53D955BBBE6C8 /* OpalImagePickerRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574AFA974B260010D718ED35E9C2ACA4 /* OpalImagePickerRootViewController.swift */; };
 		B53E61D6C58819E3293226C9CD5D6DDC /* Pods-OpalImagePickerDemoTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A800FA200BC8BD982A97999DE9C4B400 /* Pods-OpalImagePickerDemoTests-dummy.m */; };
-		BA19815AB32ED4DEC71499C0E8701BBE /* OpalImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EE0945B3663166168C5DBF5931F131 /* OpalImagePickerController.swift */; };
+		C97A405315C9F1E4BC94629A16A4DBFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 512DCB4463C7A381637811FAA97893D5 /* Assets.xcassets */; };
 		D892C56FEB3B278DD68B42F890B3AB71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		DC72C40E3EC378BC9D02046CB6C93A39 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
+		E1DC82B2E6141F39CBD84C8F540F4BEE /* OpalImagePickerCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F40C7A6F0DB82A35365FD673FA5E17 /* OpalImagePickerCollectionViewLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,14 +31,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = DBA885A1AFCD2BA8AD8DE4213E57672E;
+			remoteGlobalIDString = 6C41DAF30DF9A1061B265E6C40E4909F;
 			remoteInfo = OpalImagePicker;
 		};
-		BE5958F65F0560158A1678BDDE8492EB /* PBXContainerItemProxy */ = {
+		A1E7E123D4B4788BA14DFBA1FF4CA48B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C39C3B58C143C4E76EE8E886B576F605;
+			remoteGlobalIDString = 6D5F52DE3305F1C317EB4FDDD859E4FB;
 			remoteInfo = "OpalImagePicker-OpalImagePickerResources";
 		};
 /* End PBXContainerItemProxy section */
@@ -45,16 +46,16 @@
 /* Begin PBXFileReference section */
 		020FE0BCBB90D71CF58AE6E4BAF60069 /* Pods-OpalImagePickerDemo-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-OpalImagePickerDemo-umbrella.h"; sourceTree = "<group>"; };
 		1025D0DAF80F8C37063DA3DCF5857512 /* Pods-OpalImagePickerDemo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-OpalImagePickerDemo-dummy.m"; sourceTree = "<group>"; };
-		23E6E0B96B8B2AF4FAC016F1A0912C79 /* ImagePickerCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ImagePickerCollectionViewCell.swift; sourceTree = "<group>"; };
 		28F14971D77A56DB24351851B34944EC /* Pods-OpalImagePickerDemo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-OpalImagePickerDemo-acknowledgements.markdown"; sourceTree = "<group>"; };
 		2C8FC736CA941796CEE2E614C2520341 /* Pods_OpalImagePickerDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_OpalImagePickerDemo.framework; path = "Pods-OpalImagePickerDemo.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		319295439E93BFE45D756BC618674F93 /* OpalImagePickerCollectionViewLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OpalImagePickerCollectionViewLayout.swift; sourceTree = "<group>"; };
 		38C66169E29A7F32A21E30767121E9DD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E3E9285A3D6529292BBC1D7754F1B69 /* Pods-OpalImagePickerDemoTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-OpalImagePickerDemoTests-umbrella.h"; sourceTree = "<group>"; };
 		512DCB4463C7A381637811FAA97893D5 /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		574AFA974B260010D718ED35E9C2ACA4 /* OpalImagePickerRootViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OpalImagePickerRootViewController.swift; sourceTree = "<group>"; };
+		59D13FD4939BAE37E7041741EA204C52 /* OpalImagePickerController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OpalImagePickerController.swift; sourceTree = "<group>"; };
+		5D776B0AE62B89E7EBA3343EED10B2E3 /* Bundle+Helper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Bundle+Helper.swift"; sourceTree = "<group>"; };
 		5ED8ECF6751429899756965E38DF64D5 /* Pods-OpalImagePickerDemo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OpalImagePickerDemo-acknowledgements.plist"; sourceTree = "<group>"; };
 		61EF7D32B69775EA3EB77AB949753C9B /* Pods-OpalImagePickerDemoTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-OpalImagePickerDemoTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		65EE1D15E3E9CFEA26E0E60BB1E3E596 /* UIViewController+OpalImagePicker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIViewController+OpalImagePicker.swift"; sourceTree = "<group>"; };
 		6800201265B0D03162B95EB6F08BE25C /* Pods-OpalImagePickerDemoTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OpalImagePickerDemoTests-resources.sh"; sourceTree = "<group>"; };
 		69A1B148F81FBC42646585866816E570 /* OpalImagePickerResources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = OpalImagePickerResources.bundle; path = OpalImagePickerResources.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F4E5E6FBF9A55104EED6AF08F610F00 /* OpalImagePicker-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OpalImagePicker-prefix.pch"; sourceTree = "<group>"; };
@@ -63,16 +64,16 @@
 		848C34E01E24FADAA76430C1C9D2B154 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		85B8FD2C545608CDB71FF3A088887C7D /* Pods-OpalImagePickerDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OpalImagePickerDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		87FAEE73CA43F987A1791EDF0FEB19E4 /* Pods-OpalImagePickerDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OpalImagePickerDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		92F40C7A6F0DB82A35365FD673FA5E17 /* OpalImagePickerCollectionViewLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OpalImagePickerCollectionViewLayout.swift; sourceTree = "<group>"; };
 		933412A8955F3B9A3997FFBA39E4CAB1 /* OpalImagePicker-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "OpalImagePicker-dummy.m"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		93FF54E695702D73B4D1630D458F8318 /* Pods-OpalImagePickerDemoTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OpalImagePickerDemoTests-frameworks.sh"; sourceTree = "<group>"; };
 		94537B780D59E1541E219EC10B199337 /* Pods-OpalImagePickerDemoTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-OpalImagePickerDemoTests.modulemap"; sourceTree = "<group>"; };
-		A6EE0945B3663166168C5DBF5931F131 /* OpalImagePickerController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OpalImagePickerController.swift; sourceTree = "<group>"; };
 		A7261D53BA21E69B7D113971B2311227 /* OpalImagePicker.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = OpalImagePicker.modulemap; sourceTree = "<group>"; };
 		A800FA200BC8BD982A97999DE9C4B400 /* Pods-OpalImagePickerDemoTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-OpalImagePickerDemoTests-dummy.m"; sourceTree = "<group>"; };
-		AC8FA082F9C6661A37A14BBB66F1DDCE /* Bundle+Helper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Bundle+Helper.swift"; sourceTree = "<group>"; };
 		ADD0D9712799428136F949032F2A735B /* Pods_OpalImagePickerDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_OpalImagePickerDemoTests.framework; path = "Pods-OpalImagePickerDemoTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B66221A50618B714563E970BDEB7516B /* Pods-OpalImagePickerDemo-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-OpalImagePickerDemo-frameworks.sh"; sourceTree = "<group>"; };
+		BEF5385395520D56406235515D712DA3 /* UIViewController+OpalImagePicker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIViewController+OpalImagePicker.swift"; sourceTree = "<group>"; };
 		C966999BBC5C616FC62064C0CDEAEAE3 /* Pods-OpalImagePickerDemoTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-OpalImagePickerDemoTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		CDEB1F0EF6C13DCECD62C82C1012142C /* Pods-OpalImagePickerDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-OpalImagePickerDemoTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -81,11 +82,12 @@
 		DF1F009E2C829D542235C9EE929C67E9 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9C294E9C49F96FCFE79D53B24D9CA6F /* OpalImagePicker-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OpalImagePicker-umbrella.h"; sourceTree = "<group>"; };
 		EA11AD56D94CBBBAA56216DCB272AF91 /* OpalImagePicker.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = OpalImagePicker.xcconfig; sourceTree = "<group>"; };
+		ED530992BDE14958943BB7B2F4F69BF8 /* ImagePickerCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ImagePickerCollectionViewCell.swift; sourceTree = "<group>"; };
 		FD374FF5F6DEBD78EF63A88A5273319C /* OpalImagePicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = OpalImagePicker.framework; path = OpalImagePicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		7061C249019D5EF017CD5430AC08CCE4 /* Frameworks */ = {
+		2983E11D1840B42BEA37B027DA12BBCE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -100,19 +102,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		94F37180B29407224BFA849C4497F01F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3798F6D940A3466F18770D401B501015 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		990F997096185F38C513D44A26F2E3C7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				2241BD2620FF96FB5FBC304AE9EB4481 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7FF857CEC343EEE59E61C2009D17ADF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC72C40E3EC378BC9D02046CB6C93A39 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +127,20 @@
 				DEBCEC67586B52090CEC37CF1A7EF133 /* OpalImagePicker */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		5974E890289B0BBBC2DAC27A969D095C /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				5D776B0AE62B89E7EBA3343EED10B2E3 /* Bundle+Helper.swift */,
+				ED530992BDE14958943BB7B2F4F69BF8 /* ImagePickerCollectionViewCell.swift */,
+				92F40C7A6F0DB82A35365FD673FA5E17 /* OpalImagePickerCollectionViewLayout.swift */,
+				59D13FD4939BAE37E7041741EA204C52 /* OpalImagePickerController.swift */,
+				574AFA974B260010D718ED35E9C2ACA4 /* OpalImagePickerRootViewController.swift */,
+				BEF5385395520D56406235515D712DA3 /* UIViewController+OpalImagePicker.swift */,
+			);
+			name = Source;
+			path = Source;
 			sourceTree = "<group>";
 		};
 		6A4AE9A275F4F2470958FDBE590865A9 /* Support Files */ = {
@@ -180,17 +196,13 @@
 			);
 			sourceTree = "<group>";
 		};
-		8F27F87038E7636A1E16D76567A01CC7 /* Source */ = {
+		8431BF53E03A692F2C0013E79C42FE26 /* OpalImagePicker */ = {
 			isa = PBXGroup;
 			children = (
-				AC8FA082F9C6661A37A14BBB66F1DDCE /* Bundle+Helper.swift */,
-				23E6E0B96B8B2AF4FAC016F1A0912C79 /* ImagePickerCollectionViewCell.swift */,
-				319295439E93BFE45D756BC618674F93 /* OpalImagePickerCollectionViewLayout.swift */,
-				A6EE0945B3663166168C5DBF5931F131 /* OpalImagePickerController.swift */,
-				65EE1D15E3E9CFEA26E0E60BB1E3E596 /* UIViewController+OpalImagePicker.swift */,
+				5974E890289B0BBBC2DAC27A969D095C /* Source */,
 			);
-			name = Source;
-			path = Source;
+			name = OpalImagePicker;
+			path = OpalImagePicker;
 			sourceTree = "<group>";
 		};
 		94BD54504CE75CFAF71B96BEDB876A46 /* Pods-OpalImagePickerDemo */ = {
@@ -223,7 +235,7 @@
 		B99AF5EEA204C0B542A5ABA35EA64D7E /* OpalImagePicker */ = {
 			isa = PBXGroup;
 			children = (
-				C6968A7C7B52C0873DBC807EF8C93A06 /* OpalImagePicker */,
+				8431BF53E03A692F2C0013E79C42FE26 /* OpalImagePicker */,
 				089AF7CE353D33432D1EF5A5C2ACBA9E /* Resources */,
 				6A4AE9A275F4F2470958FDBE590865A9 /* Support Files */,
 			);
@@ -237,15 +249,6 @@
 				7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C6968A7C7B52C0873DBC807EF8C93A06 /* OpalImagePicker */ = {
-			isa = PBXGroup;
-			children = (
-				8F27F87038E7636A1E16D76567A01CC7 /* Source */,
-			);
-			name = OpalImagePicker;
-			path = OpalImagePicker;
 			sourceTree = "<group>";
 		};
 		C740C6996DD01062C8EBD7341FF55268 /* Pods-OpalImagePickerDemoTests */ = {
@@ -287,6 +290,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		19E2612F6E138A4CF16D795F7C875598 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E28CEA51B308A7250B7E5542DA1E277 /* OpalImagePicker-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3A31FA1DDCBA370F6FDD6A39302A28E5 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -300,14 +311,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				689E9FDD9C972FE621595449AA3669AC /* Pods-OpalImagePickerDemo-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		99D1BF3781D92E8874E509D6D522B550 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0FCF51996D84B857457E28878E183A7C /* OpalImagePicker-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,13 +352,32 @@
 			productReference = ADD0D9712799428136F949032F2A735B /* Pods_OpalImagePickerDemoTests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		C39C3B58C143C4E76EE8E886B576F605 /* OpalImagePicker-OpalImagePickerResources */ = {
+		6C41DAF30DF9A1061B265E6C40E4909F /* OpalImagePicker */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 46FF239D7C4A2B1D58FC6080D13F5B11 /* Build configuration list for PBXNativeTarget "OpalImagePicker-OpalImagePickerResources" */;
+			buildConfigurationList = B4D5E60333D44446F03DC689D93CBD8B /* Build configuration list for PBXNativeTarget "OpalImagePicker" */;
 			buildPhases = (
-				D75B0F2458DC3D4F7A3B7E555F0FC43B /* Sources */,
-				7061C249019D5EF017CD5430AC08CCE4 /* Frameworks */,
-				09E1E788F17A459462D1D0BB4B45C3AE /* Resources */,
+				B711908EA140F1E6CCC3026EF3D05BF5 /* Sources */,
+				F7FF857CEC343EEE59E61C2009D17ADF /* Frameworks */,
+				63BB1E341E06D88223536772698CFDA9 /* Resources */,
+				19E2612F6E138A4CF16D795F7C875598 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EAF5B36D0B0437D4EBBC91A7B6C01BA6 /* PBXTargetDependency */,
+			);
+			name = OpalImagePicker;
+			productName = OpalImagePicker;
+			productReference = FD374FF5F6DEBD78EF63A88A5273319C /* OpalImagePicker.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		6D5F52DE3305F1C317EB4FDDD859E4FB /* OpalImagePicker-OpalImagePickerResources */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 997F6D989F67925799F91A669B99BC64 /* Build configuration list for PBXNativeTarget "OpalImagePicker-OpalImagePickerResources" */;
+			buildPhases = (
+				07F0A45C862A8C41AEEF5A0FD6721166 /* Sources */,
+				2983E11D1840B42BEA37B027DA12BBCE /* Frameworks */,
+				1A25ED65A18DD87F8DC6CDD09804628B /* Resources */,
 			);
 			buildRules = (
 			);
@@ -365,25 +387,6 @@
 			productName = "OpalImagePicker-OpalImagePickerResources";
 			productReference = 69A1B148F81FBC42646585866816E570 /* OpalImagePickerResources.bundle */;
 			productType = "com.apple.product-type.bundle";
-		};
-		DBA885A1AFCD2BA8AD8DE4213E57672E /* OpalImagePicker */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 66111FDDCDD4E475B50116EF36C7A7B5 /* Build configuration list for PBXNativeTarget "OpalImagePicker" */;
-			buildPhases = (
-				00B6A6BA93A4E7AF8F0DBA88F8519644 /* Sources */,
-				94F37180B29407224BFA849C4497F01F /* Frameworks */,
-				1D2E97889BC3F961833CCA827AE76AD3 /* Resources */,
-				99D1BF3781D92E8874E509D6D522B550 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				59EA23B996A47EC15FD76487DF29CB48 /* PBXTargetDependency */,
-			);
-			name = OpalImagePicker;
-			productName = OpalImagePicker;
-			productReference = FD374FF5F6DEBD78EF63A88A5273319C /* OpalImagePicker.framework */;
-			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -406,8 +409,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DBA885A1AFCD2BA8AD8DE4213E57672E /* OpalImagePicker */,
-				C39C3B58C143C4E76EE8E886B576F605 /* OpalImagePicker-OpalImagePickerResources */,
+				6C41DAF30DF9A1061B265E6C40E4909F /* OpalImagePicker */,
+				6D5F52DE3305F1C317EB4FDDD859E4FB /* OpalImagePicker-OpalImagePickerResources */,
 				113EF1A2284C5B204BA3E785A918E6F6 /* Pods-OpalImagePickerDemo */,
 				2F3423234C42B9AD89DE3FFDB249A0D5 /* Pods-OpalImagePickerDemoTests */,
 			);
@@ -415,35 +418,29 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		09E1E788F17A459462D1D0BB4B45C3AE /* Resources */ = {
+		1A25ED65A18DD87F8DC6CDD09804628B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B33B45087DADCF702ADD150F2DEDB96 /* Assets.xcassets in Resources */,
+				C97A405315C9F1E4BC94629A16A4DBFF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1D2E97889BC3F961833CCA827AE76AD3 /* Resources */ = {
+		63BB1E341E06D88223536772698CFDA9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10C9D2917C1614AE5ADAC06AAF0AED2B /* OpalImagePickerResources.bundle in Resources */,
+				9E00359BC162CB897CEC50A22E012C67 /* OpalImagePickerResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		00B6A6BA93A4E7AF8F0DBA88F8519644 /* Sources */ = {
+		07F0A45C862A8C41AEEF5A0FD6721166 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8FEBD21A95396D370256767C4EF24B6F /* Bundle+Helper.swift in Sources */,
-				973BBD5F17D0D5AABFED7809B9BABDD6 /* ImagePickerCollectionViewCell.swift in Sources */,
-				884C32D4E0EA6EF209CEF9482FECF357 /* OpalImagePicker-dummy.m in Sources */,
-				313AFD4D9DBB6DDC1AD3BDF2C68ED309 /* OpalImagePickerCollectionViewLayout.swift in Sources */,
-				BA19815AB32ED4DEC71499C0E8701BBE /* OpalImagePickerController.swift in Sources */,
-				853B313B79810AE7DA78ABF1D40CAD4A /* UIViewController+OpalImagePicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,10 +452,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D75B0F2458DC3D4F7A3B7E555F0FC43B /* Sources */ = {
+		B711908EA140F1E6CCC3026EF3D05BF5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				927120BA6197522987C1C2757C2AE3D2 /* Bundle+Helper.swift in Sources */,
+				755C143F3862482107C10E7B55CB5C3C /* ImagePickerCollectionViewCell.swift in Sources */,
+				58AD687AD205F7C483D40B3C60531CA1 /* OpalImagePicker-dummy.m in Sources */,
+				E1DC82B2E6141F39CBD84C8F540F4BEE /* OpalImagePickerCollectionViewLayout.swift in Sources */,
+				98A1E662AAF0696273E2C9F070A41DE1 /* OpalImagePickerController.swift in Sources */,
+				A4C3982BB846A98A4AC53D955BBBE6C8 /* OpalImagePickerRootViewController.swift in Sources */,
+				97D6A52A0ED368D812684B2B369CD020 /* UIViewController+OpalImagePicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,52 +480,53 @@
 		0AC53CEF0B0FF60A08435B1899E411FE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = OpalImagePicker;
-			target = DBA885A1AFCD2BA8AD8DE4213E57672E /* OpalImagePicker */;
+			target = 6C41DAF30DF9A1061B265E6C40E4909F /* OpalImagePicker */;
 			targetProxy = 3F4B7C7BEB3F1F7387B8B5259036D47A /* PBXContainerItemProxy */;
 		};
-		59EA23B996A47EC15FD76487DF29CB48 /* PBXTargetDependency */ = {
+		EAF5B36D0B0437D4EBBC91A7B6C01BA6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "OpalImagePicker-OpalImagePickerResources";
-			target = C39C3B58C143C4E76EE8E886B576F605 /* OpalImagePicker-OpalImagePickerResources */;
-			targetProxy = BE5958F65F0560158A1678BDDE8492EB /* PBXContainerItemProxy */;
+			target = 6D5F52DE3305F1C317EB4FDDD859E4FB /* OpalImagePicker-OpalImagePickerResources */;
+			targetProxy = A1E7E123D4B4788BA14DFBA1FF4CA48B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0BF3043DEE84BBBB489FA2CADFE548AA /* Debug */ = {
+		2EF1D5531943D63802DE9E4FE3F2052A /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EA11AD56D94CBBBAA56216DCB272AF91 /* OpalImagePicker.xcconfig */;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/OpalImagePicker";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/OpalImagePicker/OpalImagePicker-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/OpalImagePicker/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				INFOPLIST_FILE = "Target Support Files/OpalImagePicker/ResourceBundle-OpalImagePickerResources-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/OpalImagePicker/OpalImagePicker.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = OpalImagePicker;
+				PRODUCT_NAME = OpalImagePickerResources;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		3E5EE586505CA3A5FF9AF46E1E97234A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA11AD56D94CBBBAA56216DCB272AF91 /* OpalImagePicker.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/OpalImagePicker";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/OpalImagePicker/ResourceBundle-OpalImagePickerResources-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_NAME = OpalImagePickerResources;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
 		};
-		19D72DCA16EEB0275FCBA8444149126E /* Release */ = {
+		54904F937FEDDC706BB200D069E1EEB5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EA11AD56D94CBBBAA56216DCB272AF91 /* OpalImagePicker.xcconfig */;
 			buildSettings = {
@@ -633,23 +638,6 @@
 			};
 			name = Debug;
 		};
-		8CEBF4A8546953BD537E83FFFB72A41A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = EA11AD56D94CBBBAA56216DCB272AF91 /* OpalImagePicker.xcconfig */;
-			buildSettings = {
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/OpalImagePicker";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/OpalImagePicker/ResourceBundle-OpalImagePickerResources-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				PRODUCT_NAME = OpalImagePickerResources;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
-		};
 		B7324857C38B065FEB1EEE3105C2367A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -725,6 +713,39 @@
 			};
 			name = Debug;
 		};
+		DB5122D22F19AA5E60803802877687A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA11AD56D94CBBBAA56216DCB272AF91 /* OpalImagePicker.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/OpalImagePicker/OpalImagePicker-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/OpalImagePicker/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/OpalImagePicker/OpalImagePicker.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = OpalImagePicker;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		E0C960C72DFA73099CB180DCDCA67666 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0861E792156CF3681F29469DA507192 /* Pods-OpalImagePickerDemo.release.xcconfig */;
@@ -757,23 +778,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		F34D528431E2241EC014E909D28687D8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = EA11AD56D94CBBBAA56216DCB272AF91 /* OpalImagePicker.xcconfig */;
-			buildSettings = {
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/OpalImagePicker";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/OpalImagePicker/ResourceBundle-OpalImagePickerResources-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				PRODUCT_NAME = OpalImagePickerResources;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
 		};
@@ -833,20 +837,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		46FF239D7C4A2B1D58FC6080D13F5B11 /* Build configuration list for PBXNativeTarget "OpalImagePicker-OpalImagePickerResources" */ = {
+		997F6D989F67925799F91A669B99BC64 /* Build configuration list for PBXNativeTarget "OpalImagePicker-OpalImagePickerResources" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8CEBF4A8546953BD537E83FFFB72A41A /* Debug */,
-				F34D528431E2241EC014E909D28687D8 /* Release */,
+				3E5EE586505CA3A5FF9AF46E1E97234A /* Debug */,
+				2EF1D5531943D63802DE9E4FE3F2052A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		66111FDDCDD4E475B50116EF36C7A7B5 /* Build configuration list for PBXNativeTarget "OpalImagePicker" */ = {
+		B4D5E60333D44446F03DC689D93CBD8B /* Build configuration list for PBXNativeTarget "OpalImagePicker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0BF3043DEE84BBBB489FA2CADFE548AA /* Debug */,
-				19D72DCA16EEB0275FCBA8444149126E /* Release */,
+				DB5122D22F19AA5E60803802877687A2 /* Debug */,
+				54904F937FEDDC706BB200D069E1EEB5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

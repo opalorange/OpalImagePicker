@@ -8,8 +8,12 @@
 
 import UIKit
 
+
+/// Collection View Layout that evenly lays out the images in the Image Picker.
 open class OpalImagePickerCollectionViewLayout: UICollectionViewLayout {
     
+    
+    /// Estimated Image Size. Used as a minimum image size to determine how many images should be go across to cover the width. You can override for different display preferences. Assumed to be greater than 0.
     open var estimatedImageSize: CGFloat {
         guard let collectionView = self.collectionView else { return 80 }
         return collectionView.traitCollection.horizontalSizeClass == .regular ? 160 : 80
@@ -18,22 +22,43 @@ open class OpalImagePickerCollectionViewLayout: UICollectionViewLayout {
     var sizeOfItem: CGFloat = 0
     fileprivate var cellLayoutInfo: [IndexPath:UICollectionViewLayoutAttributes] = [:]
     
+    
+    /// Prepare for Collection View Update
+    ///
+    /// - Parameter updateItems: Items to update
     open override func prepare(forCollectionViewUpdates updateItems: [UICollectionViewUpdateItem]) {
         updateItemSizes()
     }
     
+    
+    /// Prepare the layout
     open override func prepare() {
         updateItemSizes()
     }
     
+    
+    /// Returns `Bool` telling should invalidate layout
+    ///
+    /// - Parameter newBounds: the new bounds
+    /// - Returns: Returns a `Bool` telling should invalidate layout
     open override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         return true
     }
     
+    
+    /// Returns layout attributes for indexPath
+    ///
+    /// - Parameter indexPath: the `IndexPath`
+    /// - Returns: Returns layout attributes
     open override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         return cellLayoutInfo[indexPath]
     }
     
+    
+    /// Returns a list of layout attributes for items in rect
+    ///
+    /// - Parameter rect: the Rect
+    /// - Returns: Returns a list of layout attributes
     open override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         guard let collectionView = self.collectionView else { return nil }
         let numberOfItems = collectionView.numberOfItems(inSection: 0)
@@ -42,6 +67,8 @@ open class OpalImagePickerCollectionViewLayout: UICollectionViewLayout {
             }.map { $0.value }
     }
     
+    
+    /// Collection View Content Size
     open override var collectionViewContentSize: CGSize {
         guard let collectionView = self.collectionView else { return CGSize.zero }
         let numberOfItemsAcross = Int(collectionView.bounds.width/estimatedImageSize)
