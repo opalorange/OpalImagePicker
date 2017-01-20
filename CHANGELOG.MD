@@ -1,4 +1,4 @@
-## [1.1.1](https://github.com/opalorange/OpalImagePicker/releases/tag/1.1.0)
+## [1.1.1](https://github.com/opalorange/OpalImagePicker/releases/tag/1.1.1)
 Released on 2016-01-19.
 
 #### Fixed
