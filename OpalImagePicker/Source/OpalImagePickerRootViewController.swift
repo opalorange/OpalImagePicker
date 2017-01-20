@@ -169,6 +169,7 @@ open class OpalImagePickerRootViewController: UIViewController {
                 strongSelf.photosCompleted += 1
                 if strongSelf.photosCompleted == photoAssets.count {
                     strongSelf.delegate?.imagePicker?(imagePicker, didFinishPickingImages: strongSelf.savedImages)
+                    strongSelf.savedImages = []
                 }
             })
         }
