@@ -1,4 +1,10 @@
-## [1.1.0](https://github.com/opalorange/OpalImagePicker/releases/tag/1.0.1)
+## [1.1.1](https://github.com/opalorange/OpalImagePicker/releases/tag/1.1.0)
+Released on 2016-01-19.
+
+#### Fixed
+- Bug fix: Issue: Images Array Problem #1
+
+## [1.1.0](https://github.com/opalorange/OpalImagePicker/releases/tag/1.1.0)
 Released on 2016-01-16.
 
 #### Fixed
