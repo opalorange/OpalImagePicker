@@ -19,6 +19,12 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    var size: CGSize? {
+        didSet {
+            loadIfNeeded()
+        }
+    }
+    
     var selectionTintColor: UIColor = UIColor.black.withAlphaComponent(0.8) {
         didSet {
             overlayView?.backgroundColor = selectionTintColor
@@ -106,7 +112,7 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
     }
     
     fileprivate func loadIfNeeded() {
-        guard let asset = photoAsset else { return }
+        guard let asset = photoAsset, let size = self.size else { return }
         
         let options = PHImageRequestOptions()
         options.deliveryMode = .highQualityFormat
@@ -114,7 +120,7 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
         options.isNetworkAccessAllowed = true
         
         let manager = PHImageManager.default()
-        imageRequestID = manager.requestImage(for: asset, targetSize: bounds.size, contentMode: .aspectFill, options: options, resultHandler: { [weak self] (result, info) in
+        imageRequestID = manager.requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: options, resultHandler: { [weak self] (result, info) in
             self?.imageRequestID = nil
             guard let result = result else {
                 self?.imageView?.image = nil

@@ -246,9 +246,12 @@ extension OpalImagePickerRootViewController: UICollectionViewDataSource {
     /// - Returns: Returns the `UICollectionViewCell`
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         fetchNextPageIfNeeded(indexPath: indexPath)
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImagePickerCollectionViewCell.reuseId, for: indexPath) as? ImagePickerCollectionViewCell else { return UICollectionViewCell() }
+        
+        guard let layoutAttributes = collectionViewLayout?.layoutAttributesForItem(at: indexPath),
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImagePickerCollectionViewCell.reuseId, for: indexPath) as? ImagePickerCollectionViewCell else { return UICollectionViewCell() }
         let photoAsset = photoAssets.object(at: indexPath.item)
         cell.photoAsset = photoAsset
+        cell.size = layoutAttributes.frame.size
         
         if let selectionTintColor = self.selectionTintColor {
             cell.selectionTintColor = selectionTintColor
