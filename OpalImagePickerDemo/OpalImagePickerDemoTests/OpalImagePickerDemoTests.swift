@@ -2,8 +2,8 @@
 //  OpalImagePickerDemoTests.swift
 //  OpalImagePickerDemoTests
 //
-//  Created by Kris Katsanevas on 1/15/17.
-//  Copyright © 2017 Opal Orange LLC. All rights reserved.
+//  Created by Mihail Șalari on 2/9/17.
+//  Copyright © 2017 SIC. All rights reserved.
 //
 
 import XCTest

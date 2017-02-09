@@ -58,12 +58,24 @@ open class OpalImagePickerRootViewController: UIViewController {
     
     internal var fetchLimit: Int {
         get {
-            return fetchOptions.fetchLimit
+            if #available(iOS 9.0, *) {
+                return fetchOptions.fetchLimit
+            } else {
+                // Fallback on earlier versions
+                
+                return 5 // TODO: - Need to change
+            }
         }
         set {
-            fetchOptions.fetchLimit = newValue
+            if #available(iOS 9.0, *) {
+                fetchOptions.fetchLimit = newValue
+            } else {
+                // Fallback on earlier versions
+                // TODO: - need to change
+            }
         }
     }
+
     
     fileprivate var photosCompleted = 0
     fileprivate var savedImages: [UIImage] = []
@@ -80,7 +92,13 @@ open class OpalImagePickerRootViewController: UIViewController {
     
     fileprivate func setup() {
         requestPhotoAccessIfNeeded(PHPhotoLibrary.authorizationStatus())
-        fetchOptions.fetchLimit = pageSize
+        if #available(iOS 9.0, *) {
+            fetchOptions.fetchLimit = pageSize
+        } else {
+            // Fallback on earlier versions
+            
+            // TODO: - need to change
+        }
         photoAssets = PHAsset.fetchAssets(with: fetchOptions)
         
         let collectionView = UICollectionView(frame: view.frame, collectionViewLayout: OpalImagePickerCollectionViewLayout())
@@ -93,12 +111,20 @@ open class OpalImagePickerRootViewController: UIViewController {
         view.addSubview(collectionView)
         self.collectionView = collectionView
         
-        NSLayoutConstraint.activate([
-            view.leftAnchor.constraint(equalTo: collectionView.leftAnchor),
-            view.rightAnchor.constraint(equalTo: collectionView.rightAnchor),
-            view.topAnchor.constraint(equalTo: collectionView.topAnchor),
-            view.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor)
-            ])
+        if #available(iOS 9.0, *) {
+            NSLayoutConstraint.activate([
+                view.leftAnchor.constraint(equalTo: collectionView.leftAnchor),
+                view.rightAnchor.constraint(equalTo: collectionView.rightAnchor),
+                view.topAnchor.constraint(equalTo: collectionView.topAnchor),
+                view.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor)
+                ])
+        } else {
+            // Fallback on earlier versions
+            
+            view.addConstraintsWithFormat("H:|[v0]|", views: collectionView)
+            view.addConstraintsWithFormat("V:|[v0]|", views: collectionView)
+        }
+        
         view.layoutIfNeeded()
     }
     

@@ -36,13 +36,23 @@ class OpalImagePickerRootViewControllerTest: XCTestCase {
     
     func testGetCollectionViewLayout() {
         let imagePicker = OpalImagePickerRootViewController()
-        imagePicker.loadViewIfNeeded()
+        if #available(iOS 9.0, *) {
+            imagePicker.loadViewIfNeeded()
+        } else {
+            // Fallback on earlier versions
+            imagePicker.loadView()
+        }
         XCTAssertNotNil(imagePicker.collectionViewLayout)
     }
     
     func testGetFetchOptions() {
         let imagePicker = OpalImagePickerRootViewController()
-        imagePicker.loadViewIfNeeded()
+        if #available(iOS 9.0, *) {
+            imagePicker.loadViewIfNeeded()
+        } else {
+            // Fallback on earlier versions
+            imagePicker.loadView()
+        }
         let fetchOptions = imagePicker.fetchOptions
         let sortDescriptors = fetchOptions.sortDescriptors?.filter { $0.key == "creationDate" }
         XCTAssertEqual(sortDescriptors?.count, 1)
@@ -51,16 +61,36 @@ class OpalImagePickerRootViewControllerTest: XCTestCase {
     
     func testGetFetchLimit() {
         let imagePicker = OpalImagePickerRootViewController()
-        imagePicker.loadViewIfNeeded()
-        imagePicker.fetchOptions.fetchLimit = 5
-        XCTAssertEqual(imagePicker.fetchLimit, 5)
+        if #available(iOS 9.0, *) {
+            imagePicker.loadViewIfNeeded()
+        } else {
+            // Fallback on earlier versions
+            imagePicker.loadView()
+        }
+        
+        if #available(iOS 9.0, *) {
+            imagePicker.fetchLimit = 5
+            XCTAssertEqual(imagePicker.fetchOptions.fetchLimit, 5)
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     func testSetFetchLimit() {
         let imagePicker = OpalImagePickerRootViewController()
-        imagePicker.loadViewIfNeeded()
-        imagePicker.fetchLimit = 5
-        XCTAssertEqual(imagePicker.fetchOptions.fetchLimit, 5)
+        if #available(iOS 9.0, *) {
+            imagePicker.loadViewIfNeeded()
+        } else {
+            // Fallback on earlier versions
+            imagePicker.loadView()
+        }
+        
+        if #available(iOS 9.0, *) {
+            imagePicker.fetchLimit = 5
+            XCTAssertEqual(imagePicker.fetchOptions.fetchLimit, 5)
+        } else {
+            // Fallback on earlier versions
+        }
     }
     
     func testInit() {
@@ -70,7 +100,12 @@ class OpalImagePickerRootViewControllerTest: XCTestCase {
     
     func testSetup() {
         let imagePicker = OpalImagePickerRootViewController()
-        imagePicker.loadViewIfNeeded()
+        if #available(iOS 9.0, *) {
+            imagePicker.loadViewIfNeeded()
+        } else {
+            // Fallback on earlier versions
+            imagePicker.loadView()
+        }
         
         XCTAssertNotNil(imagePicker.collectionView)
         XCTAssertNotNil(imagePicker.collectionViewLayout)
@@ -85,7 +120,12 @@ class OpalImagePickerRootViewControllerTest: XCTestCase {
         rootVC.doneTapped()
         XCTAssertFalse(mockDelegate.isDidFinishPickingAssetsCalled)
         
-        rootVC.loadViewIfNeeded()
+        if #available(iOS 9.0, *) {
+            imagePicker.loadViewIfNeeded()
+        } else {
+            // Fallback on earlier versions
+            imagePicker.loadView()
+        }
         rootVC.doneTapped()
         XCTAssertTrue(mockDelegate.isDidFinishPickingAssetsCalled)
     }
@@ -93,7 +133,12 @@ class OpalImagePickerRootViewControllerTest: XCTestCase {
     func testCollectionViewDidSelectItem() {
         let imagePicker = OpalImagePickerController()
         let rootVC = imagePicker.viewControllers[0] as! OpalImagePickerRootViewController
-        rootVC.loadViewIfNeeded()
+        if #available(iOS 9.0, *) {
+            imagePicker.loadViewIfNeeded()
+        } else {
+            // Fallback on earlier versions
+            imagePicker.loadView()
+        }
         let indexPath = IndexPath(item: 0, section: 0)
         
         rootVC.doneButton!.isEnabled = true
