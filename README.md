@@ -11,7 +11,7 @@
 **OpalImagePicker** is a multiple selection Image Picker for iOS written in Swift. Meant to be a drop in replacement for UIImagePickerController. Compatible with both Swift and Objective-C.
 
 ## Requirements
-- Xcode 6
+- Xcode 8
 - iOS 8.0+
 
 ## Usage
