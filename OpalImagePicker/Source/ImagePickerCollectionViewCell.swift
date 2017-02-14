@@ -11,6 +11,7 @@ import Photos
 
 class ImagePickerCollectionViewCell: UICollectionViewCell {
     
+    static let scale: CGFloat = 3
     static let reuseId = String(describing: ImagePickerCollectionViewCell.self)
     
     var photoAsset: PHAsset? {
@@ -116,11 +117,14 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
         
         let options = PHImageRequestOptions()
         options.deliveryMode = .highQualityFormat
+        options.resizeMode = .exact
         options.isSynchronous = false
         options.isNetworkAccessAllowed = true
         
         let manager = PHImageManager.default()
-        imageRequestID = manager.requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: options, resultHandler: { [weak self] (result, info) in
+        let newSize = CGSize(width: size.width * type(of: self).scale,
+                             height: size.height * type(of: self).scale)
+        imageRequestID = manager.requestImage(for: asset, targetSize: newSize, contentMode: .aspectFill, options: options, resultHandler: { [weak self] (result, info) in
             self?.imageRequestID = nil
             guard let result = result else {
                 self?.imageView?.image = nil

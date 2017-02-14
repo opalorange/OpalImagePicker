@@ -1,3 +1,9 @@
+## [1.1.3](https://github.com/opalorange/OpalImagePicker/releases/tag/1.1.3)
+Released on 2016-02-13
+
+#### Fixed
+- Bug fix: More improvement - Sometimes images don't appear as sharp as they should be.
+
 ## [1.1.2](https://github.com/opalorange/OpalImagePicker/releases/tag/1.1.2)
 Released on 2016-02-05.
 
