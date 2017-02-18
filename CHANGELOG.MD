@@ -1,3 +1,12 @@
+## [1.2.0](https://github.com/opalorange/OpalImagePicker/releases/tag/1.1.3)
+Released on 2016-02-17
+
+#### Added
+- Enhancment: Allow users to change the status bar style
+
+#### Fixed
+- Bug fix: Fix spinners before images have loaded from library.
+
 ## [1.1.3](https://github.com/opalorange/OpalImagePicker/releases/tag/1.1.3)
 Released on 2016-02-13
 

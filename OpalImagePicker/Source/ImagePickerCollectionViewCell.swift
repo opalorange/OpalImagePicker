@@ -124,7 +124,9 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
         let manager = PHImageManager.default()
         let newSize = CGSize(width: size.width * type(of: self).scale,
                              height: size.height * type(of: self).scale)
+        activityIndicator?.startAnimating()
         imageRequestID = manager.requestImage(for: asset, targetSize: newSize, contentMode: .aspectFill, options: options, resultHandler: { [weak self] (result, info) in
+            self?.activityIndicator?.stopAnimating()
             self?.imageRequestID = nil
             guard let result = result else {
                 self?.imageView?.image = nil

@@ -52,6 +52,9 @@ imagePicker.selectionImageTintColor = UIColor.black
 
 //Change image to X rather than checkmark
 imagePicker.selectionImage = UIImage(named: "x_image")
+
+//Change status bar style
+imagePicker.statusBarPreference = UIStatusBarStyle.lightContent
 ```
 
 ## Installation

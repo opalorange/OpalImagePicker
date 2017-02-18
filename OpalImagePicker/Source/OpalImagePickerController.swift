@@ -67,6 +67,9 @@ open class OpalImagePickerController: UINavigationController {
         }
     }
     
+    /// Status Bar Preference (defaults to `default`)
+    open var statusBarPreference = UIStatusBarStyle.default
+    
     /// Initializer
     public required init() {
         super.init(rootViewController: OpalImagePickerRootViewController())
@@ -84,5 +87,9 @@ open class OpalImagePickerController: UINavigationController {
     /// Initializer (Do not use this controller in Interface Builder)
     public required init?(coder aDecoder: NSCoder) {
         fatalError("Cannot init \(String(describing: OpalImagePickerController.self)) from Interface Builder")
+    }
+    
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        return statusBarPreference
     }
 }
