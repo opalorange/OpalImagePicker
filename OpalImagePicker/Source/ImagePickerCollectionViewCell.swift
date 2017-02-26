@@ -83,14 +83,45 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(imageView)
         self.imageView = imageView
         
-        NSLayoutConstraint.activate([
-            contentView.leftAnchor.constraint(equalTo: imageView.leftAnchor),
-            contentView.rightAnchor.constraint(equalTo: imageView.rightAnchor),
-            contentView.topAnchor.constraint(equalTo: imageView.topAnchor),
-            contentView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
-            contentView.centerXAnchor.constraint(equalTo: activityIndicator.centerXAnchor),
-            contentView.centerYAnchor.constraint(equalTo: activityIndicator.centerYAnchor)
-            ])
+        if #available(iOS 9.0, *) {
+            NSLayoutConstraint.activate([
+                contentView.leftAnchor.constraint(equalTo: imageView.leftAnchor),
+                contentView.rightAnchor.constraint(equalTo: imageView.rightAnchor),
+                contentView.topAnchor.constraint(equalTo: imageView.topAnchor),
+                contentView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
+                contentView.centerXAnchor.constraint(equalTo: activityIndicator.centerXAnchor),
+                contentView.centerYAnchor.constraint(equalTo: activityIndicator.centerYAnchor)
+                ])
+        } else {
+            // Fallback on earlier versions
+            
+            contentView.addConstraintsWithFormat("H:|[v0]|", views: imageView)
+            contentView.addConstraintsWithFormat("V:|[v0]|", views: imageView)
+            
+            
+            activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+            let views = ["contentView": contentView, "activityIndicator": activityIndicator]
+            let visualFormat = ":[contentView]-(<=1)-[activityIndicator(30)]"
+            
+            /// Center horisontally
+            let horizontalConstraint = NSLayoutConstraint.constraints(
+                withVisualFormat: "V" + visualFormat,
+                options: .alignAllCenterX,
+                metrics: nil,
+                views: views)
+            
+            contentView.addConstraints(horizontalConstraint)
+            
+            /// Center vertically
+            let verticalConstraints = NSLayoutConstraint.constraints(
+                withVisualFormat: "H" + visualFormat,
+                options: .alignAllCenterY,
+                metrics: nil,
+                views: views)
+            
+            contentView.addConstraints(verticalConstraints)
+        }
+        
         layoutIfNeeded()
     }
     
@@ -163,16 +194,27 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(overlayImageView)
         self.overlayImageView = overlayImageView
         
-        NSLayoutConstraint.activate([
-            contentView.leftAnchor.constraint(equalTo: overlayView.leftAnchor),
-            contentView.rightAnchor.constraint(equalTo: overlayView.rightAnchor),
-            contentView.topAnchor.constraint(equalTo: overlayView.topAnchor),
-            contentView.bottomAnchor.constraint(equalTo: overlayView.bottomAnchor),
-            contentView.leftAnchor.constraint(equalTo: overlayImageView.leftAnchor),
-            contentView.rightAnchor.constraint(equalTo: overlayImageView.rightAnchor),
-            contentView.topAnchor.constraint(equalTo: overlayImageView.topAnchor),
-            contentView.bottomAnchor.constraint(equalTo: overlayImageView.bottomAnchor)
-            ])
+        if #available(iOS 9.0, *) {
+            NSLayoutConstraint.activate([
+                contentView.leftAnchor.constraint(equalTo: overlayView.leftAnchor),
+                contentView.rightAnchor.constraint(equalTo: overlayView.rightAnchor),
+                contentView.topAnchor.constraint(equalTo: overlayView.topAnchor),
+                contentView.bottomAnchor.constraint(equalTo: overlayView.bottomAnchor),
+                contentView.leftAnchor.constraint(equalTo: overlayImageView.leftAnchor),
+                contentView.rightAnchor.constraint(equalTo: overlayImageView.rightAnchor),
+                contentView.topAnchor.constraint(equalTo: overlayImageView.topAnchor),
+                contentView.bottomAnchor.constraint(equalTo: overlayImageView.bottomAnchor)
+                ])
+        } else {
+            // Fallback on earlier versions
+            
+            contentView.addConstraintsWithFormat("H:|[v0]|", views: overlayView)
+            contentView.addConstraintsWithFormat("V:|[v0]|", views: overlayView)
+            
+            contentView.addConstraintsWithFormat("H:|[v0]|", views: overlayImageView)
+            contentView.addConstraintsWithFormat("V:|[v0]|", views: overlayImageView)
+        }
+        
         layoutIfNeeded()
         
         let duration = animated ? 0.2 : 0.0

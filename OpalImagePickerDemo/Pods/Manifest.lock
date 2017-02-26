@@ -1,16 +1,16 @@
 PODS:
-  - OpalImagePicker (1.0.0)
+  - OpalImagePicker (1.1.2)
 
 DEPENDENCIES:
   - OpalImagePicker (from `..`)
 
 EXTERNAL SOURCES:
   OpalImagePicker:
-    :path: ..
+    :path: ".."
 
 SPEC CHECKSUMS:
-  OpalImagePicker: 489223b5429d61e109f04c0dc6d9f265f8089d2c
+  OpalImagePicker: a1be02b5805d9a94a68a5b7d826e82ad7e703a31
 
-PODFILE CHECKSUM: 507f929e348d98852ece7c7d8b39589f24ecb663
+PODFILE CHECKSUM: d8dd76408d6dccc4076b6fbf68c7f9145b5ae6a7
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0
