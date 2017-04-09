@@ -8,6 +8,7 @@
 
 import UIKit
 import OpalImagePicker
+import Photos
 
 class ViewController: UIViewController {
 

@@ -39,6 +39,23 @@ open class OpalImagePickerRootViewController: UIViewController {
         }
     }
     
+    /// Allowed Media Types that can be fetched. See `PHAssetMediaType`
+    open var allowedMediaTypes: Set<PHAssetMediaType>? {
+        didSet {
+            updateFetchOptionPredicate()
+        }
+    }
+    
+    /// Allowed MediaSubtype that can be fetched. Can be applied as `OptionSet`. See `PHAssetMediaSubtype`
+    open var allowedMediaSubtypes: PHAssetMediaSubtype? {
+        didSet {
+            updateFetchOptionPredicate()
+        }
+    }
+    
+    /// Maximum photo selections allowed in picker (zero or fewer means unlimited).
+    open var maximumSelectionsAllowed: Int = -1
+    
     /// Page size for paging through the Photo Assets in the Photo Library. Defaults to 100. Must override to change this value.
     open let pageSize = 100
     
@@ -79,10 +96,7 @@ open class OpalImagePickerRootViewController: UIViewController {
     }
     
     fileprivate func setup() {
-        requestPhotoAccessIfNeeded(PHPhotoLibrary.authorizationStatus())
-        fetchOptions.fetchLimit = pageSize
-        photoAssets = PHAsset.fetchAssets(with: fetchOptions)
-        
+        fetchPhotos()
         let collectionView = UICollectionView(frame: view.frame, collectionViewLayout: OpalImagePickerCollectionViewLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.allowsMultipleSelection = true
@@ -102,12 +116,40 @@ open class OpalImagePickerRootViewController: UIViewController {
         view.layoutIfNeeded()
     }
     
+    fileprivate func fetchPhotos() {
+        requestPhotoAccessIfNeeded(PHPhotoLibrary.authorizationStatus())
+        fetchOptions.fetchLimit = pageSize
+        photoAssets = PHAsset.fetchAssets(with: fetchOptions)
+        collectionView?.reloadData()
+    }
+    
+    fileprivate func updateFetchOptionPredicate() {
+        var predicates: [NSPredicate] = []
+        if let allowedMediaTypes = self.allowedMediaTypes {
+            let mediaTypesPredicates = allowedMediaTypes.map { NSPredicate(format: "mediaType = %d", $0.rawValue) }
+            let allowedMediaTypesPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: mediaTypesPredicates)
+            predicates += [allowedMediaTypesPredicate]
+        }
+        
+        if let allowedMediaSubtypes = self.allowedMediaSubtypes {
+            let mediaSubtypes = NSPredicate(format: "mediaSubtypes = %d", allowedMediaSubtypes.rawValue)
+            predicates += [mediaSubtypes]
+        }
+        
+        if predicates.count > 0 {
+            let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+            fetchOptions.predicate = predicate
+        }
+        else {
+            fetchOptions.predicate = nil
+        }
+        fetchPhotos()
+    }
     
     /// Load View
     open override func loadView() {
         view = UIView()
     }
-    
     
     open override func viewDidLoad() {
         super.viewDidLoad()
@@ -230,6 +272,22 @@ extension OpalImagePickerRootViewController: UICollectionViewDelegate {
     ///   - indexPath: the `IndexPath`
     public func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         updateDoneButton()
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        guard maximumSelectionsAllowed > 0 else { return true }
+        
+        if let indexPathsForSelectedItems = collectionView.indexPathsForSelectedItems,
+            maximumSelectionsAllowed <= indexPathsForSelectedItems.count {
+            //We exceeded maximum allowed, so alert user. Don't allow selection
+            let message = NSLocalizedString("You cannot select more than \(maximumSelectionsAllowed) images. Please deselect another image before trying to select again.", comment: "You cannot select more than (x) images. Please deselect another image before trying to select again. (OpalImagePicker)")
+            let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
+            let action = UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .cancel, handler: nil)
+            alert.addAction(action)
+            present(alert, animated: true, completion: nil)
+            return false
+        }
+        return true
     }
 }
 

@@ -67,6 +67,30 @@ open class OpalImagePickerController: UINavigationController {
         }
     }
     
+    /// Maximum photo selections allowed in picker (zero or fewer means unlimited).
+    open var maximumSelectionsAllowed: Int = -1 {
+        didSet {
+            let rootVC = viewControllers.first as? OpalImagePickerRootViewController
+            rootVC?.maximumSelectionsAllowed = maximumSelectionsAllowed
+        }
+    }
+    
+    /// Allowed Media Types that can be fetched. See `PHAssetMediaType`
+    open var allowedMediaTypes: Set<PHAssetMediaType>? {
+        didSet {
+            let rootVC = viewControllers.first as? OpalImagePickerRootViewController
+            rootVC?.allowedMediaTypes = allowedMediaTypes
+        }
+    }
+    
+    /// Allowed MediaSubtype that can be fetched. Can be applied as `OptionSet`. See `PHAssetMediaSubtype`
+    open var allowedMediaSubtypes: PHAssetMediaSubtype? {
+        didSet {
+            let rootVC = viewControllers.first as? OpalImagePickerRootViewController
+            rootVC?.allowedMediaSubtypes = allowedMediaSubtypes
+        }
+    }
+    
     /// Status Bar Preference (defaults to `default`)
     open var statusBarPreference = UIStatusBarStyle.default
     
