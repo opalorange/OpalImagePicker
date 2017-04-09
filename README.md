@@ -55,6 +55,12 @@ imagePicker.selectionImage = UIImage(named: "x_image")
 
 //Change status bar style
 imagePicker.statusBarPreference = UIStatusBarStyle.lightContent
+
+//Limit maximum allowed selections to 5
+imagePicker.maximumSelectionsAllowed = 5
+
+//Only allow image media type assets
+imagePicker.allowedMediaTypes = Set([PHAssetMediaType.image])
 ```
 
 ## Installation
