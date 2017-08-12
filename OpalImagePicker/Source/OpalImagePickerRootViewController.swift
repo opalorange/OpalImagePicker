@@ -15,8 +15,40 @@ open class OpalImagePickerRootViewController: UIViewController {
     /// Delegate for Image Picker. Notifies when images are selected (done is tapped) or when the Image Picker is cancelled.
     open weak var delegate: OpalImagePickerControllerDelegate?
     
-    /// `UICollectionView` for displaying images
+    
+    /// Configuration to change Localized Strings
+    open var configuration: OpalImagePickerConfiguration? {
+        didSet {
+            configuration?.updateStrings = configurationChanged
+            if let configuration = self.configuration {
+                configurationChanged(configuration)
+            }
+        }
+    }
+    
+    /// `UICollectionView` for displaying photo library images
     open weak var collectionView: UICollectionView?
+    
+    
+    /// `UICollectionView` for displaying external images
+    open weak var externalCollectionView: UICollectionView?
+    
+    
+    /// `UIToolbar` to switch between Photo Library and External Images.
+    open lazy var toolbar: UIToolbar = {
+        let toolbar = UIToolbar()
+        toolbar.translatesAutoresizingMaskIntoConstraints = false
+        return toolbar
+    }()
+    
+    
+    /// `UISegmentedControl` to switch between Photo Library and External Images.
+    open lazy var tabSegmentedControl: UISegmentedControl = {
+        let tabSegmentedControl = UISegmentedControl(items: [NSLocalizedString("Library", comment: "Library"), NSLocalizedString("External", comment: "External")])
+        tabSegmentedControl.addTarget(self, action: #selector(segmentTapped(_:)), for: .valueChanged)
+        tabSegmentedControl.selectedSegmentIndex = 0
+        return tabSegmentedControl
+    }()
     
     /// Custom Tint Color for overlay of selected images.
     open var selectionTintColor: UIColor? {
@@ -82,8 +114,24 @@ open class OpalImagePickerRootViewController: UIViewController {
         }
     }
     
+    internal var shouldShowTabs: Bool {
+        guard let imagePicker = navigationController as? OpalImagePickerController else { return false }
+        return delegate?.imagePickerNumberOfExternalItems?(imagePicker) != nil
+    }
+    
     fileprivate var photosCompleted = 0
     fileprivate var savedImages: [UIImage] = []
+    fileprivate var imagesDict: [IndexPath:UIImage] = [:]
+    fileprivate var showExternalImages = false
+    
+    fileprivate lazy var cache: NSCache<NSIndexPath, NSData> = {
+        let cache = NSCache<NSIndexPath, NSData>()
+        cache.totalCostLimit = 128000000 //128 MB
+        cache.countLimit = 100 // 100 images
+        return cache
+    }()
+    
+    fileprivate weak var rightExternalCollectionViewConstraint: NSLayoutConstraint?
     
     /// Initializer
     public required init() {
@@ -97,23 +145,72 @@ open class OpalImagePickerRootViewController: UIViewController {
     
     fileprivate func setup() {
         fetchPhotos()
+        
         let collectionView = UICollectionView(frame: view.frame, collectionViewLayout: OpalImagePickerCollectionViewLayout())
+        setup(collectionView: collectionView)
+        view.addSubview(collectionView)
+        self.collectionView = collectionView
+        
+        var constraints: [NSLayoutConstraint] = []
+        if shouldShowTabs {
+            setupTabs()
+            let externalCollectionView = UICollectionView(frame: view.frame, collectionViewLayout: OpalImagePickerCollectionViewLayout())
+            setup(collectionView: externalCollectionView)
+            view.addSubview(externalCollectionView)
+            self.externalCollectionView = externalCollectionView
+            
+            constraints += [externalCollectionView.topAnchor.constraint(equalTo: collectionView.topAnchor)]
+            constraints += [externalCollectionView.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor)]
+            constraints += [externalCollectionView.leftAnchor.constraint(equalTo: collectionView.rightAnchor)]
+            constraints += [collectionView.widthAnchor.constraint(equalTo: view.widthAnchor)]
+            constraints += [externalCollectionView.widthAnchor.constraint(equalTo: view.widthAnchor)]
+            constraints += [toolbar.bottomAnchor.constraint(equalTo: collectionView.topAnchor)]
+        }
+        else {
+            constraints += [view.topAnchor.constraint(equalTo: collectionView.topAnchor)]
+            constraints += [view.rightAnchor.constraint(equalTo: collectionView.rightAnchor)]
+        }
+        
+        //Lower priority to override left constraint for animations
+        let leftCollectionViewConstraint = view.leftAnchor.constraint(equalTo: collectionView.leftAnchor)
+        leftCollectionViewConstraint.priority = 999
+        constraints += [leftCollectionViewConstraint]
+        
+        constraints += [view.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor)]
+        NSLayoutConstraint.activate(constraints)
+        view.layoutIfNeeded()
+    }
+    
+    fileprivate func setup(collectionView: UICollectionView) {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.allowsMultipleSelection = true
         collectionView.backgroundColor = .white
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(ImagePickerCollectionViewCell.self, forCellWithReuseIdentifier: ImagePickerCollectionViewCell.reuseId)
-        view.addSubview(collectionView)
-        self.collectionView = collectionView
+    }
+    
+    fileprivate func setupTabs() {
+        edgesForExtendedLayout = UIRectEdge()
+        navigationController?.navigationBar.isTranslucent = false
+        toolbar.isTranslucent = false
+        
+        view.addSubview(toolbar)
+        let flexItem1 = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let flexItem2 = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let barButtonItem = UIBarButtonItem(customView: tabSegmentedControl)
+        toolbar.setItems([flexItem1, barButtonItem, flexItem2], animated: false)
+        
+        if let imagePicker = navigationController as? OpalImagePickerController,
+            let title = delegate?.imagePickerTitleForExternalItems?(imagePicker) {
+            tabSegmentedControl.setTitle(title, forSegmentAt: 1)
+        }
         
         NSLayoutConstraint.activate([
-            view.leftAnchor.constraint(equalTo: collectionView.leftAnchor),
-            view.rightAnchor.constraint(equalTo: collectionView.rightAnchor),
-            view.topAnchor.constraint(equalTo: collectionView.topAnchor),
-            view.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor)
+            toolbar.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
+            toolbar.leftAnchor.constraint(equalTo: view.leftAnchor),
+            toolbar.rightAnchor.constraint(equalTo: view.rightAnchor)
             ])
-        view.layoutIfNeeded()
     }
     
     fileprivate func fetchPhotos() {
@@ -155,14 +252,13 @@ open class OpalImagePickerRootViewController: UIViewController {
         super.viewDidLoad()
         setup()
         
-        navigationItem.title = NSLocalizedString("Photos", comment: "")
+        navigationItem.title = configuration?.navigationTitle ?? NSLocalizedString("Photos", comment: "")
         
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
         navigationItem.leftBarButtonItem = cancelButton
         self.cancelButton = cancelButton
         
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneTapped))
-        doneButton.isEnabled = false
         navigationItem.rightBarButtonItem = doneButton
         self.doneButton = doneButton
     }
@@ -175,54 +271,45 @@ open class OpalImagePickerRootViewController: UIViewController {
     }
     
     func doneTapped() {
-        guard let imagePicker = navigationController as? OpalImagePickerController,
-            let collectionViewLayout = collectionView?.collectionViewLayout as? OpalImagePickerCollectionViewLayout else { return }
+        guard let imagePicker = navigationController as? OpalImagePickerController else { return }
+        
         let indexPathsForSelectedItems = collectionView?.indexPathsForSelectedItems ?? []
+        let externalIndexPaths = externalCollectionView?.indexPathsForSelectedItems ?? []
+        guard indexPathsForSelectedItems.count + externalIndexPaths.count > 0 else {
+            cancelTapped()
+            return
+        }
         
         var photoAssets: [PHAsset] = []
         for indexPath in indexPathsForSelectedItems {
             guard indexPath.item < self.photoAssets.count else { continue }
             photoAssets += [self.photoAssets.object(at: indexPath.item)]
         }
-        
-        
         delegate?.imagePicker?(imagePicker, didFinishPickingAssets: photoAssets)
         
-        //Skip next step for optimization if `imagePicker:didFinishPickingAssets:` isn't implemented on delegate
+        var selectedURLs: [URL] = []
+        for indexPath in externalIndexPaths {
+            guard let url = delegate?.imagePicker?(imagePicker, imageURLforExternalItemAtIndex: indexPath.item) else { continue }
+            selectedURLs += [url]
+        }
+        delegate?.imagePicker?(imagePicker, didFinishPickingExternalURLs: selectedURLs)
+        delegate?.imagePicker?(imagePicker, didFinishPickingImages: imagesDict.values.flatMap({ $0 }))
+    }
+    
+    fileprivate func set(image: UIImage?, indexPath: IndexPath, isExternal: Bool) {
+        // Only store images if delegate method is implemented
         if let nsDelegate = delegate as? NSObject,
             !nsDelegate.responds(to: #selector(OpalImagePickerControllerDelegate.imagePicker(_:didFinishPickingImages:))) {
             return
         }
         
-        let options = PHImageRequestOptions()
-        options.deliveryMode = .highQualityFormat
-        options.isSynchronous = false
-        options.isNetworkAccessAllowed = true
-        
-        photosCompleted = 0
-        for photoAsset in photoAssets {
-            let size = CGSize(width: collectionViewLayout.sizeOfItem * 3, height: collectionViewLayout.sizeOfItem * 3)
-            PHImageManager.default().requestImage(for: photoAsset, targetSize: size, contentMode: .aspectFill, options: options, resultHandler: { [weak self] (result, info) in
-                guard let strongSelf = self else { return }
-                if let image = result {
-                    strongSelf.savedImages += [image]
-                }
-                
-                strongSelf.photosCompleted += 1
-                if strongSelf.photosCompleted == photoAssets.count {
-                    strongSelf.delegate?.imagePicker?(imagePicker, didFinishPickingImages: strongSelf.savedImages)
-                    strongSelf.savedImages = []
-                }
-            })
-        }
+        let key = IndexPath(item: indexPath.item, section: isExternal ? 1 : 0)
+        imagesDict[key] = image
     }
     
-    fileprivate func updateDoneButton() {
-        guard let indexPathsForSelectedItems = collectionView?.indexPathsForSelectedItems else {
-            doneButton?.isEnabled = false
-            return
-        }
-        doneButton?.isEnabled = indexPathsForSelectedItems.count > 0
+    fileprivate func get(imageForIndexPath indexPath: IndexPath, isExternal: Bool) -> UIImage? {
+        let key = IndexPath(item: indexPath.item, section: isExternal ? 1 : 0)
+        return imagesDict[key]
     }
     
     fileprivate func fetchNextPageIfNeeded(indexPath: IndexPath) {
@@ -248,6 +335,34 @@ open class OpalImagePickerRootViewController: UIViewController {
             }
         }
     }
+    
+    @objc fileprivate func segmentTapped(_ sender: UISegmentedControl) {
+        showExternalImages = sender.selectedSegmentIndex == 1
+        
+        //Instantiate right constraint if needed
+        if rightExternalCollectionViewConstraint == nil {
+            let rightConstraint = externalCollectionView?.rightAnchor.constraint(equalTo: view.rightAnchor)
+            rightExternalCollectionViewConstraint = rightConstraint
+        }
+        rightExternalCollectionViewConstraint?.isActive = showExternalImages
+            
+        UIView.animate(withDuration: 0.2, animations: { [weak self] in
+            sender.isUserInteractionEnabled = false
+            self?.view.layoutIfNeeded()
+        }) { _ in
+            sender.isUserInteractionEnabled = true
+        }
+    }
+    
+    fileprivate func configurationChanged(_ configuration: OpalImagePickerConfiguration) {
+        if let navigationTitle = configuration.navigationTitle {
+            navigationItem.title = navigationTitle
+        }
+        
+        if let librarySegmentTitle = configuration.librarySegmentTitle {
+            tabSegmentedControl.setTitle(librarySegmentTitle, forSegmentAt: 0)
+        }
+    }
 }
 
 //MARK: - Collection View Delegate
@@ -261,7 +376,9 @@ extension OpalImagePickerRootViewController: UICollectionViewDelegate {
     ///   - collectionView: the `UICollectionView`
     ///   - indexPath: the `IndexPath`
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        updateDoneButton()
+        guard let cell = collectionView.cellForItem(at: indexPath) as? ImagePickerCollectionViewCell,
+            let image = cell.imageView?.image else { return }
+        set(image: image, indexPath: indexPath, isExternal: collectionView == self.externalCollectionView)
     }
     
     
@@ -271,18 +388,23 @@ extension OpalImagePickerRootViewController: UICollectionViewDelegate {
     ///   - collectionView: the `UICollectionView`
     ///   - indexPath: the `IndexPath`
     public func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        updateDoneButton()
+        set(image: nil, indexPath: indexPath, isExternal: collectionView == self.externalCollectionView)
     }
     
     public func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? ImagePickerCollectionViewCell,
+            cell.imageView?.image != nil else { return false }
         guard maximumSelectionsAllowed > 0 else { return true }
         
-        if let indexPathsForSelectedItems = collectionView.indexPathsForSelectedItems,
-            maximumSelectionsAllowed <= indexPathsForSelectedItems.count {
+        let collectionViewItems = self.collectionView?.indexPathsForSelectedItems?.count ?? 0
+        let externalCollectionViewItems = self.externalCollectionView?.indexPathsForSelectedItems?.count ?? 0
+        
+        if maximumSelectionsAllowed <= collectionViewItems + externalCollectionViewItems {
             //We exceeded maximum allowed, so alert user. Don't allow selection
-            let message = NSLocalizedString("You cannot select more than \(maximumSelectionsAllowed) images. Please deselect another image before trying to select again.", comment: "You cannot select more than (x) images. Please deselect another image before trying to select again. (OpalImagePicker)")
+            let message = configuration?.maximumSelectionsAllowedMessage ?? NSLocalizedString("You cannot select more than \(maximumSelectionsAllowed) images. Please deselect another image before trying to select again.", comment: "You cannot select more than (x) images. Please deselect another image before trying to select again. (OpalImagePicker)")
             let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
-            let action = UIAlertAction(title: NSLocalizedString("OK", comment: "OK"), style: .cancel, handler: nil)
+            let okayString = configuration?.okayString ?? NSLocalizedString("OK", comment: "OK")
+            let action = UIAlertAction(title: okayString, style: .cancel, handler: nil)
             alert.addAction(action)
             present(alert, animated: true, completion: nil)
             return false
@@ -296,16 +418,26 @@ extension OpalImagePickerRootViewController: UICollectionViewDelegate {
 extension OpalImagePickerRootViewController: UICollectionViewDataSource {
     
     
-    /// Returns Collection View Cell for item at `IndexPath1
+    /// Returns Collection View Cell for item at `IndexPath`
     ///
     /// - Parameters:
     ///   - collectionView: the `UICollectionView`
     ///   - indexPath: the `IndexPath`
     /// - Returns: Returns the `UICollectionViewCell`
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if collectionView == self.collectionView {
+            return photoAssetCollectionView(collectionView, cellForItemAt: indexPath)
+        }
+        else {
+            return externalCollectionView(collectionView, cellForItemAt: indexPath)
+        }
+    }
+    
+    fileprivate func photoAssetCollectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         fetchNextPageIfNeeded(indexPath: indexPath)
         
-        guard let layoutAttributes = collectionViewLayout?.layoutAttributesForItem(at: indexPath),
+        guard let layoutAttributes = collectionView.collectionViewLayout.layoutAttributesForItem(at: indexPath),
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImagePickerCollectionViewCell.reuseId, for: indexPath) as? ImagePickerCollectionViewCell else { return UICollectionViewCell() }
         let photoAsset = photoAssets.object(at: indexPath.item)
         cell.photoAsset = photoAsset
@@ -324,6 +456,30 @@ extension OpalImagePickerRootViewController: UICollectionViewDataSource {
         return cell
     }
     
+    fileprivate func externalCollectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let imagePicker = navigationController as? OpalImagePickerController,
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImagePickerCollectionViewCell.reuseId, for: indexPath) as? ImagePickerCollectionViewCell else { return UICollectionViewCell() }
+        if let url = delegate?.imagePicker?(imagePicker, imageURLforExternalItemAtIndex: indexPath.item) {
+            cell.cache = cache
+            cell.url = url
+            cell.indexPath = indexPath
+        }
+        else {
+            assertionFailure("You need to implement `imagePicker(_:imageURLForExternalItemAtIndex:)` in your delegate.")
+        }
+        
+        if let selectionTintColor = self.selectionTintColor {
+            cell.selectionTintColor = selectionTintColor
+        }
+        if let selectionImageTintColor = self.selectionImageTintColor {
+            cell.selectionImageTintColor = selectionImageTintColor
+        }
+        if let selectionImage = self.selectionImage {
+            cell.selectionImage = selectionImage
+        }
+        
+        return cell
+    }
     
     /// Returns the number of items in a given section
     ///
@@ -332,6 +488,16 @@ extension OpalImagePickerRootViewController: UICollectionViewDataSource {
     ///   - section: the given section of the `UICollectionView`
     /// - Returns: Returns an `Int` for the number of rows.
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photoAssets.count
+        if collectionView == self.collectionView {
+            return photoAssets.count
+        }
+        else if let imagePicker = navigationController as? OpalImagePickerController,
+            let numberOfItems = delegate?.imagePickerNumberOfExternalItems?(imagePicker) {
+            return numberOfItems
+        }
+        else {
+            assertionFailure("You need to implement `imagePickerNumberOfExternalItems(_:)` in your delegate.")
+            return 0
+        }
     }
 }

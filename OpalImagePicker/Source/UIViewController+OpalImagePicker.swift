@@ -20,25 +20,82 @@ public extension UIViewController {
     ///   - cancel: notifies when Image Picker has been cancelled by user
     ///   - completion: notifies when the Image Picker finished presenting
     public func presentOpalImagePickerController(_ imagePicker: OpalImagePickerController, animated: Bool, select: @escaping (([PHAsset]) -> Void), cancel: @escaping (() -> Void), completion: (() -> Void)? = nil) {
-        let manager = OpalImagePickerManager.sharedInstance
-        manager.select = select
+        let manager = OpalImagePickerManager.shared
+        manager.selectAssets = select
         manager.cancel = cancel
         imagePicker.imagePickerDelegate = manager
         present(imagePicker, animated: animated, completion: completion)
     }
+    
+    
+    /// Present Image Picker with External Images using closures rather than delegation.
+    ///
+    /// - Parameters:
+    ///   - imagePicker: the `OpalImagePickerController`
+    ///   - animated: is presentation animated
+    ///   - maximumSelectionsAllowed: the maximum number of image selections allowed for the user. Defaults to 10. This is advised to limit the amount of memory to store all the images.
+    ///   - numberOfExternalItems: the number of external items
+    ///   - externalItemsTitle: the localized title for display in the `UISegmentedControl`
+    ///   - externalURLForIndex: the `URL` for an external item at the given index.
+    ///   - selectImages: notifies that image selections have completed with an array of `UIImage`
+    ///   - selectAssets: notifies that image selections have completed with an array of `PHAsset`
+    ///   - selectExternalURLs: notifies that image selections have completed with an array of `URL`
+    ///   - cancel: notifies when Image Picker has been cancelled by user
+    ///   - completion: notifies when the Image Picker finished presenting
+    public func presentOpalImagePickerController(_ imagePicker: OpalImagePickerController, animated: Bool, maximumSelectionsAllowed: Int = 10, numberOfExternalItems: Int, externalItemsTitle: String, externalURLForIndex: @escaping (Int) -> URL?, selectImages: (([UIImage]) -> Void)? = nil, selectAssets: (([PHAsset]) -> Void)? = nil, selectExternalURLs: (([URL]) -> Void)? = nil, cancel: @escaping () -> Void, completion: (() -> Void)? = nil) {
+        let manager = OpalImagePickerWithExternalItemsManager.sharedWithExternalItems
+        manager.selectImages = selectImages
+        manager.selectAssets = selectAssets
+        manager.selectURLs = selectExternalURLs
+        manager.cancel = cancel
+        manager.numberOfExternalItems = numberOfExternalItems
+        manager.externalItemsTitle = externalItemsTitle
+        manager.externalURLForIndex = externalURLForIndex
+        imagePicker.imagePickerDelegate = manager
+        imagePicker.maximumSelectionsAllowed = maximumSelectionsAllowed
+        present(imagePicker, animated: animated, completion: completion)
+    }
 }
 
-final class OpalImagePickerManager: NSObject {
-    var select: (([PHAsset]) -> Void)?
+class OpalImagePickerWithExternalItemsManager: OpalImagePickerManager {
+    var selectImages: (([UIImage]) -> Void)?
+    var selectURLs: (([URL]) -> Void)?
+    var externalURLForIndex: ((Int) -> URL?)?
+    var numberOfExternalItems = 0
+    var externalItemsTitle = NSLocalizedString("External", comment: "External (Segmented Control Title)")
+    
+    static let sharedWithExternalItems = OpalImagePickerWithExternalItemsManager()
+    
+    fileprivate override init() { }
+    
+    func imagePickerNumberOfExternalItems(_ picker: OpalImagePickerController) -> Int {
+        return numberOfExternalItems
+    }
+    
+    func imagePickerTitleForExternalItems(_ picker: OpalImagePickerController) -> String {
+        return externalItemsTitle
+    }
+    
+    func imagePicker(_ picker: OpalImagePickerController, imageURLforExternalItemAtIndex index: Int) -> URL? {
+        return externalURLForIndex?(index)
+    }
+    
+    func imagePicker(_ picker: OpalImagePickerController, didFinishPickingExternalURLs urls: [URL]) {
+        selectURLs?(urls)
+    }
+}
+
+class OpalImagePickerManager: NSObject {
+    var selectAssets: (([PHAsset]) -> Void)?
     var cancel: (() -> Void)?
     
-    static let sharedInstance = OpalImagePickerManager()
+    static var shared = OpalImagePickerManager()
     fileprivate override init() { }
 }
 
 extension OpalImagePickerManager: OpalImagePickerControllerDelegate {
     func imagePicker(_ picker: OpalImagePickerController, didFinishPickingAssets assets: [PHAsset]) {
-        select?(assets)
+        selectAssets?(assets)
     }
     
     func imagePickerDidCancel(_ picker: OpalImagePickerController) {

@@ -84,24 +84,5 @@ class OpalImagePickerRootViewControllerTest: XCTestCase {
         let rootVC = imagePicker.viewControllers[0] as! OpalImagePickerRootViewController
         rootVC.doneTapped()
         XCTAssertFalse(mockDelegate.isDidFinishPickingAssetsCalled)
-        
-        rootVC.loadViewIfNeeded()
-        rootVC.doneTapped()
-        XCTAssertTrue(mockDelegate.isDidFinishPickingAssetsCalled)
-    }
-    
-    func testCollectionViewDidSelectItem() {
-        let imagePicker = OpalImagePickerController()
-        let rootVC = imagePicker.viewControllers[0] as! OpalImagePickerRootViewController
-        rootVC.loadViewIfNeeded()
-        let indexPath = IndexPath(item: 0, section: 0)
-        
-        rootVC.doneButton!.isEnabled = true
-        rootVC.collectionView(rootVC.collectionView!, didSelectItemAt: indexPath)
-        XCTAssertFalse(rootVC.doneButton!.isEnabled)
-        
-        rootVC.doneButton!.isEnabled = true
-        rootVC.collectionView(rootVC.collectionView!, didDeselectItemAt: indexPath)
-        XCTAssertFalse(rootVC.doneButton!.isEnabled)
     }
 }

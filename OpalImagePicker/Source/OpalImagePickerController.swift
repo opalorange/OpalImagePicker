@@ -12,7 +12,9 @@ import Photos
 /// Image Picker Controller Delegate. Notifies when images are selected or image picker is cancelled.
 @objc public protocol OpalImagePickerControllerDelegate: class {
     
-    /// Image Picker did finish picking images. Provides an array of `UIImage` selected.
+    /// Image Picker did finish picking images. Provides an array of `UIImage` selected. Also provides external
+    /// images if they are used. Consider using setting `maximumSelectionsAllowed` when using this delegate method
+    /// because several `UIImage` objects are stored in memory when you implement this delegate function.
     ///
     /// - Parameters:
     ///   - picker: the `OpalImagePickerController`
@@ -30,6 +32,35 @@ import Photos
     ///
     /// - Parameter picker: the `OpalImagePickerController`
     @objc optional func imagePickerDidCancel(_ picker: OpalImagePickerController)
+    
+    /// Image Picker Number of External items. Optional use to provide items from external
+    /// sources e.g. (Facebook, Twitter, or Instagram).
+    ///
+    /// - Parameter picker: the `OpalImagePickerController`
+    /// - Returns: an `Int` describing the number of available external image `URL`
+    @objc optional func imagePickerNumberOfExternalItems(_ picker: OpalImagePickerController) -> Int
+    
+    /// Image Picker returns the `URL` for an image at an `Int` index. Optional use to provide items from external
+    /// sources e.g. (Facebook, Twitter, or Instagram).
+    ///
+    /// - Parameters:
+    ///   - picker: the `OpalImagePickerController`
+    ///   - index: the `Int` index for the image
+    /// - Returns: the `URL`
+    @objc optional func imagePicker(_ picker: OpalImagePickerController, imageURLforExternalItemAtIndex index: Int) -> URL?
+    
+    /// Image Picker external title. This will appear in the `UISegmentedControl`. Make sure to provide a Localized String.
+    ///
+    /// - Parameter picker: the `OpalImagePickerController`
+    /// - Returns: the `String`. This should be a Localized String.
+    @objc optional func imagePickerTitleForExternalItems(_ picker: OpalImagePickerController) -> String
+    
+    /// Image Picker did finish picking external images. Provides an array of `URL` selected.
+    ///
+    /// - Parameters:
+    ///   - picker: the `OpalImagePickerController`
+    ///   - urls: the array of `URL`
+    @objc optional func imagePicker(_ picker: OpalImagePickerController, didFinishPickingExternalURLs urls: [URL])
 }
 
 /// Image Picker Controller. Displays images from the Photo Library. Must check Photo Library permissions before attempting to display this controller.
@@ -40,6 +71,14 @@ open class OpalImagePickerController: UINavigationController {
         didSet {
             let rootVC = viewControllers.first as? OpalImagePickerRootViewController
             rootVC?.delegate = imagePickerDelegate
+        }
+    }
+
+    /// Configuration to change Localized Strings
+    open var configuration: OpalImagePickerConfiguration? {
+        didSet {
+            let rootVC = viewControllers.first as? OpalImagePickerRootViewController
+            rootVC?.configuration = configuration
         }
     }
     
@@ -93,6 +132,23 @@ open class OpalImagePickerController: UINavigationController {
     
     /// Status Bar Preference (defaults to `default`)
     open var statusBarPreference = UIStatusBarStyle.default
+    
+    /// External `UIToolbar` barTintColor.
+    open var externalToolbarBarTintColor: UIColor? {
+        didSet {
+            let rootVC = viewControllers.first as? OpalImagePickerRootViewController
+            rootVC?.toolbar.barTintColor = externalToolbarBarTintColor
+        }
+    }
+    
+    /// External `UIToolbar` and `UISegmentedControl` tint color.
+    open var externalToolbarTintColor: UIColor? {
+        didSet {
+            let rootVC = viewControllers.first as? OpalImagePickerRootViewController
+            rootVC?.toolbar.tintColor = externalToolbarTintColor
+            rootVC?.tabSegmentedControl.tintColor = externalToolbarTintColor
+        }
+    }
     
     /// Initializer
     public required init() {

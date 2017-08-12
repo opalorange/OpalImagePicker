@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "OpalImagePicker"
-  s.version      = "1.3.0"
+  s.version      = "1.4.0"
   s.summary      = "Multiple Selection Image Picker for iOS written in Swift"
   s.homepage     = "https://github.com/opalorange/OpalImagePicker"
   s.license      = { :type => "MIT", :file => "LICENSE" }

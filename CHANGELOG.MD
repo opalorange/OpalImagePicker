@@ -1,14 +1,21 @@
+## [1.4.0](https://github.com/opalorange/OpalImagePicker/releases/tag/1.4.0)
+Released on 2017-08-09
+
+#### Added
+- Enhancement: Allow users to use external images using URLs with new optional delegate methods (requested for use with social media).
+- Enhancement: Allow users to configure localized strings from new `OpalImagePickerConfiguration` class.
+
 ## [1.3.0](https://github.com/opalorange/OpalImagePicker/releases/tag/1.3.0)
 Released on 2017-04-09
 
 #### Added
-- Enhancment: Allow users to mark maximum allowed photos, and select allowed media types and sub types.
+- Enhancement: Allow users to mark maximum allowed photos, and select allowed media types and sub types.
 
 ## [1.2.0](https://github.com/opalorange/OpalImagePicker/releases/tag/1.2.0)
 Released on 2017-02-17
 
 #### Added
-- Enhancment: Allow users to change the status bar style
+- Enhancement: Allow users to change the status bar style
 
 #### Fixed
 - Bug fix: Fix spinners before images have loaded from library.

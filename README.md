@@ -39,6 +39,16 @@ optional func imagePicker(_ picker: OpalImagePickerController, didFinishPickingA
 optional func imagePickerDidCancel(_ picker: OpalImagePickerController)
 ```
 
+**OpalImagePicker** also allows you to use external images. You may want to use images from Facebook, Instagram, or Twitter for example. You can do this either using the delegate methods below or the following function in Swift **presentOpalImagePickerController(_: animated: maximumSelectionsAllowed: numberOfExternalItems: externalItemsTitle: externalURLForIndex: selectImages: selectAssets: selectExternalURLs: cancel: completion:)** function.
+
+```swift
+optional func imagePicker(_ picker: OpalImagePickerController, didFinishPickingImages images: [UIImage])
+optional func imagePickerNumberOfExternalItems(_ picker: OpalImagePickerController) -> Int
+optional func imagePicker(_ picker: OpalImagePickerController, imageURLforExternalItemAtIndex index: Int) -> URL?    
+optional func imagePickerTitleForExternalItems(_ picker: OpalImagePickerController) -> String
+optional func imagePicker(_ picker: OpalImagePickerController, didFinishPickingExternalURLs urls: [URL])
+```
+
 **OpalImagePicker** supports allowing users to customize user interface features
 
 ```swift
@@ -61,6 +71,11 @@ imagePicker.maximumSelectionsAllowed = 5
 
 //Only allow image media type assets
 imagePicker.allowedMediaTypes = Set([PHAssetMediaType.image])
+
+//Change default localized strings displayed to the user
+let configuration = OpalImagePickerConfiguration()
+configuration.maximumSelectionsAllowedMessage = NSLocalizedString("You cannot select that many images!", comment: "")
+imagePicker.configuration = configuration
 ```
 
 ## Installation

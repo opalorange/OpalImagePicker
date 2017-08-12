@@ -16,15 +16,29 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
     
     var photoAsset: PHAsset? {
         didSet {
-            loadIfNeeded()
+            loadPhotoAssetIfNeeded()
         }
     }
     
     var size: CGSize? {
         didSet {
-            loadIfNeeded()
+            loadPhotoAssetIfNeeded()
         }
     }
+    
+    var url: URL? {
+        didSet {
+            loadURLIfNeeded()
+        }
+    }
+    
+    var indexPath: IndexPath? {
+        didSet {
+            loadURLIfNeeded()
+        }
+    }
+    
+    var cache: NSCache<NSIndexPath, NSData>?
     
     var selectionTintColor: UIColor = UIColor.black.withAlphaComponent(0.8) {
         didSet {
@@ -65,6 +79,7 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
     weak var overlayImageView: UIImageView?
     
     fileprivate var imageRequestID: PHImageRequestID?
+    fileprivate var urlDataTask: URLSessionTask?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -102,7 +117,8 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         imageView?.image = nil
         
-        //Cancel request if needed
+        //Cancel requests if needed
+        urlDataTask?.cancel()
         let manager = PHImageManager.default()
         guard let imageRequestID = self.imageRequestID else { return }
         manager.cancelImageRequest(imageRequestID)
@@ -112,7 +128,7 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
         setSelected(false, animated: false)
     }
     
-    fileprivate func loadIfNeeded() {
+    fileprivate func loadPhotoAssetIfNeeded() {
         guard let asset = photoAsset, let size = self.size else { return }
         
         let options = PHImageRequestOptions()
@@ -134,6 +150,46 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
             }
             self?.imageView?.image = result
         })
+    }
+    
+    fileprivate func loadURLIfNeeded() {
+        guard let url = self.url,
+            let indexPath = self.indexPath else {
+                activityIndicator?.stopAnimating()
+                imageView?.image = nil
+                return
+        }
+        
+        //Check cache first to avoid downloading image.
+        if let imageData = cache?.object(forKey: indexPath as NSIndexPath) as Data?,
+            let image = UIImage(data: imageData) {
+            activityIndicator?.stopAnimating()
+            imageView?.image = image
+            return
+        }
+        
+        activityIndicator?.startAnimating()
+        urlDataTask = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
+            guard indexPath == self?.indexPath else { return }
+            self?.activityIndicator?.stopAnimating()
+            
+            guard let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                //let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                let data = data, error == nil,
+                let image = UIImage(data: data) else {
+                    //broken link image
+                    return
+            }
+            
+            self?.cache?.setObject(data as NSData,
+                                   forKey: indexPath as NSIndexPath,
+                                   cost: data.count)
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.imageView?.image = image
+            }
+        }
+        urlDataTask?.resume()
     }
     
     fileprivate func updateSelected(_ animated: Bool) {
