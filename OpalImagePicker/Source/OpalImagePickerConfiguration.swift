@@ -27,6 +27,20 @@ public class OpalImagePickerConfiguration: NSObject {
         }
     }
     
+    /// Localized 'Cancel' button text.
+    public var cancelButtonTitle: String? {
+        didSet {
+            updateStrings?(self)
+        }
+    }
+    
+    /// Localized 'Done' button text.
+    public var doneButtonTitle: String? {
+        didSet {
+            updateStrings?(self)
+        }
+    }
+    
     /// Localized maximum selections allowed error message displayed to the user.
     public var maximumSelectionsAllowedMessage: String?
     

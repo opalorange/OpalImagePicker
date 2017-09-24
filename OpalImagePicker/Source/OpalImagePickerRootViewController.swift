@@ -123,6 +123,8 @@ open class OpalImagePickerRootViewController: UIViewController {
     fileprivate var savedImages: [UIImage] = []
     fileprivate var imagesDict: [IndexPath:UIImage] = [:]
     fileprivate var showExternalImages = false
+    fileprivate var selectedIndexPaths: [IndexPath] = []
+    fileprivate var externalSelectedIndexPaths: [IndexPath] = []
     
     fileprivate lazy var cache: NSCache<NSIndexPath, NSData> = {
         let cache = NSCache<NSIndexPath, NSData>()
@@ -173,7 +175,7 @@ open class OpalImagePickerRootViewController: UIViewController {
         
         //Lower priority to override left constraint for animations
         let leftCollectionViewConstraint = view.leftAnchor.constraint(equalTo: collectionView.leftAnchor)
-        leftCollectionViewConstraint.priority = 999
+        leftCollectionViewConstraint.priority = UILayoutPriority(rawValue: 999)
         constraints += [leftCollectionViewConstraint]
         
         constraints += [view.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor)]
@@ -254,27 +256,29 @@ open class OpalImagePickerRootViewController: UIViewController {
         
         navigationItem.title = configuration?.navigationTitle ?? NSLocalizedString("Photos", comment: "")
         
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
+        let cancelButtonTitle = configuration?.cancelButtonTitle ?? NSLocalizedString("Cancel", comment: "")
+        let cancelButton = UIBarButtonItem(title: cancelButtonTitle, style: .plain, target: self, action: #selector(cancelTapped))
         navigationItem.leftBarButtonItem = cancelButton
         self.cancelButton = cancelButton
         
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneTapped))
+        let doneButtonTitle = configuration?.doneButtonTitle ?? NSLocalizedString("Done", comment: "")
+        let doneButton = UIBarButtonItem(title: doneButtonTitle, style: .done, target: self, action: #selector(doneTapped))
         navigationItem.rightBarButtonItem = doneButton
         self.doneButton = doneButton
     }
     
-    func cancelTapped() {
+    @objc func cancelTapped() {
         dismiss(animated: true) { [weak self] in
             guard let imagePicker = self?.navigationController as? OpalImagePickerController else { return }
             self?.delegate?.imagePickerDidCancel?(imagePicker)
         }
     }
     
-    func doneTapped() {
+    @objc func doneTapped() {
         guard let imagePicker = navigationController as? OpalImagePickerController else { return }
         
-        let indexPathsForSelectedItems = collectionView?.indexPathsForSelectedItems ?? []
-        let externalIndexPaths = externalCollectionView?.indexPathsForSelectedItems ?? []
+        let indexPathsForSelectedItems = selectedIndexPaths
+        let externalIndexPaths = externalSelectedIndexPaths
         guard indexPathsForSelectedItems.count + externalIndexPaths.count > 0 else {
             cancelTapped()
             return
@@ -297,6 +301,8 @@ open class OpalImagePickerRootViewController: UIViewController {
     }
     
     fileprivate func set(image: UIImage?, indexPath: IndexPath, isExternal: Bool) {
+        update(isSelected: image != nil, isExternal: isExternal, for: indexPath)
+        
         // Only store images if delegate method is implemented
         if let nsDelegate = delegate as? NSObject,
             !nsDelegate.responds(to: #selector(OpalImagePickerControllerDelegate.imagePicker(_:didFinishPickingImages:))) {
@@ -305,6 +311,21 @@ open class OpalImagePickerRootViewController: UIViewController {
         
         let key = IndexPath(item: indexPath.item, section: isExternal ? 1 : 0)
         imagesDict[key] = image
+    }
+    
+    fileprivate func update(isSelected: Bool, isExternal: Bool, for indexPath: IndexPath) {
+        if isSelected && isExternal {
+            externalSelectedIndexPaths += [indexPath]
+        }
+        else if !isSelected && isExternal {
+            externalSelectedIndexPaths = externalSelectedIndexPaths.filter { $0 != indexPath }
+        }
+        else if isSelected && !isExternal {
+            selectedIndexPaths += [indexPath]
+        }
+        else {
+            selectedIndexPaths = selectedIndexPaths.filter { $0 != indexPath }
+        }
     }
     
     fileprivate func get(imageForIndexPath indexPath: IndexPath, isExternal: Bool) -> UIImage? {

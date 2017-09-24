@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="jVJ-Oe-NTF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="jVJ-Oe-NTF">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--ViewController-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="OpalImagePickerDemo" customModuleProvider="target" sceneMemberID="viewController">
@@ -35,7 +35,7 @@
                             <constraint firstItem="C25-vX-SuU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="d3A-Ob-FeR"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="ViewController" id="jal-LP-4JR">
+                    <navigationItem key="navigationItem" title="View Controller" id="jal-LP-4JR">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="kOI-vz-0UV">
                             <connections>
                                 <segue destination="zDo-za-RJq" kind="show" id="ajM-gu-TbS"/>
@@ -47,10 +47,10 @@
             </objects>
             <point key="canvasLocation" x="772" y="-31"/>
         </scene>
-        <!--OIViewController-->
+        <!--Delegate Example-->
         <scene sceneID="YpH-mW-0li">
             <objects>
-                <viewController id="zDo-za-RJq" customClass="OIViewController" sceneMemberID="viewController">
+                <viewController id="zDo-za-RJq" customClass="DelegateExampleViewController" customModule="OpalImagePickerDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2sV-Kf-K1I"/>
                         <viewControllerLayoutGuide type="bottom" id="fbr-xX-iqk"/>
@@ -63,7 +63,7 @@
                                 <rect key="frame" x="141" y="318" width="92" height="30"/>
                                 <state key="normal" title="Photo Library"/>
                                 <connections>
-                                    <action selector="photoLibraryTapped:" destination="zDo-za-RJq" eventType="touchUpInside" id="4Be-As-X78"/>
+                                    <action selector="photoLibraryTapped:" destination="zDo-za-RJq" eventType="touchUpInside" id="KXq-pP-Aof"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -73,7 +73,7 @@
                             <constraint firstItem="7SX-3f-XNX" firstAttribute="centerX" secondItem="GSO-1F-7Rd" secondAttribute="centerX" id="5OL-Cu-3MF"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="OIViewController" id="TwX-PT-36r"/>
+                    <navigationItem key="navigationItem" title="Delegate Example" id="TwX-PT-36r"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MR0-Ar-PdA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -84,7 +84,7 @@
             <objects>
                 <navigationController id="jVJ-Oe-NTF" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jyy-L8-Cv1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>

@@ -171,21 +171,23 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
         activityIndicator?.startAnimating()
         urlDataTask = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
             guard indexPath == self?.indexPath else { return }
-            self?.activityIndicator?.stopAnimating()
-            
-            guard let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-                //let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-                let data = data, error == nil,
-                let image = UIImage(data: data) else {
-                    //broken link image
-                    return
-            }
-            
-            self?.cache?.setObject(data as NSData,
-                                   forKey: indexPath as NSIndexPath,
-                                   cost: data.count)
-            
             DispatchQueue.main.async { [weak self] in
+                self?.activityIndicator?.stopAnimating()
+                
+                guard let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                    let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                    let data = data, error == nil,
+                    let image = UIImage(data: data) else {
+                        //broken link image
+                        self?.imageView?.image = UIImage()
+                        return
+                }
+                
+                self?.cache?.setObject(data as NSData,
+                                       forKey: indexPath as NSIndexPath,
+                                       cost: data.count)
+                
+                
                 self?.imageView?.image = image
             }
         }

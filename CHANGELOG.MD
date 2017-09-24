@@ -1,3 +1,14 @@
+## [1.5.0](https://github.com/opalorange/OpalImagePicker/releases/tag/2.0.0)
+Released on 2017-09-24
+
+#### Added
+- Enhancement: Convert OpalImagePicker and OpalImagePickerDemo to Swift 4.0
+
+#### Fixed
+- Bug fix: Issue: navigation bar item localize #11
+- Bug fix: Issue: Order of assets in completion handler #12
+- Bug fix: External Images crash on loading image by URL.
+
 ## [1.4.0](https://github.com/opalorange/OpalImagePicker/releases/tag/1.4.0)
 Released on 2017-08-09
 

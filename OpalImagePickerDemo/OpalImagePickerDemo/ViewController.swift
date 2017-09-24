@@ -17,19 +17,19 @@ class ViewController: UIViewController {
             //Show error to user?
             return
         }
-        
+
         //Example Instantiating OpalImagePickerController with Closures
         let imagePicker = OpalImagePickerController()
-        
+
         //Present Image Picker
         presentOpalImagePickerController(imagePicker, animated: true, select: { (assets) in
             //TODO: Save Images, update UI
-            
+
             //Dismiss Controller
             imagePicker.dismiss(animated: true, completion: nil)
         }, cancel: {
             //TODO: Cancel action?
-            
+
         })
     }
 }
