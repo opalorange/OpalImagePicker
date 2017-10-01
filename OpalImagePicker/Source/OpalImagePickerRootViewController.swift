@@ -88,7 +88,7 @@ open class OpalImagePickerRootViewController: UIViewController {
     /// Maximum photo selections allowed in picker (zero or fewer means unlimited).
     open var maximumSelectionsAllowed: Int = -1
     
-    /// Page size for paging through the Photo Assets in the Photo Library. Defaults to 100. Must override to change this value.
+    /// Page size for paging through the Photo Assets in the Photo Library. Defaults to 100. Must override to change this value. Only works in iOS 9.0+
     open let pageSize = 100
     
     var photoAssets: PHFetchResult<PHAsset> = PHFetchResult()
@@ -105,6 +105,7 @@ open class OpalImagePickerRootViewController: UIViewController {
         return fetchOptions
     }()
     
+    @available(iOS 9.0, *)
     internal var fetchLimit: Int {
         get {
             return fetchOptions.fetchLimit
@@ -161,24 +162,24 @@ open class OpalImagePickerRootViewController: UIViewController {
             view.addSubview(externalCollectionView)
             self.externalCollectionView = externalCollectionView
             
-            constraints += [externalCollectionView.topAnchor.constraint(equalTo: collectionView.topAnchor)]
-            constraints += [externalCollectionView.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor)]
-            constraints += [externalCollectionView.leftAnchor.constraint(equalTo: collectionView.rightAnchor)]
-            constraints += [collectionView.widthAnchor.constraint(equalTo: view.widthAnchor)]
-            constraints += [externalCollectionView.widthAnchor.constraint(equalTo: view.widthAnchor)]
-            constraints += [toolbar.bottomAnchor.constraint(equalTo: collectionView.topAnchor)]
+            constraints += [externalCollectionView.constraintEqualTo(with: collectionView, attribute: .top)]
+            constraints += [externalCollectionView.constraintEqualTo(with: collectionView, attribute: .bottom)]
+            constraints += [externalCollectionView.constraintEqualTo(with: collectionView, receiverAttribute: .left, otherAttribute: .right)]
+            constraints += [collectionView.constraintEqualTo(with: view, attribute: .width)]
+            constraints += [externalCollectionView.constraintEqualTo(with: view, attribute: .width)]
+            constraints += [toolbar.constraintEqualTo(with: collectionView, receiverAttribute: .bottom, otherAttribute: .top)]
         }
         else {
-            constraints += [view.topAnchor.constraint(equalTo: collectionView.topAnchor)]
-            constraints += [view.rightAnchor.constraint(equalTo: collectionView.rightAnchor)]
+            constraints += [view.constraintEqualTo(with: collectionView, attribute: .top)]
+            constraints += [view.constraintEqualTo(with: collectionView, attribute: .right)]
         }
         
         //Lower priority to override left constraint for animations
-        let leftCollectionViewConstraint = view.leftAnchor.constraint(equalTo: collectionView.leftAnchor)
+        let leftCollectionViewConstraint = view.constraintEqualTo(with: collectionView, attribute: .left)
         leftCollectionViewConstraint.priority = UILayoutPriority(rawValue: 999)
         constraints += [leftCollectionViewConstraint]
         
-        constraints += [view.bottomAnchor.constraint(equalTo: collectionView.bottomAnchor)]
+        constraints += [view.constraintEqualTo(with: collectionView, attribute: .bottom)]
         NSLayoutConstraint.activate(constraints)
         view.layoutIfNeeded()
     }
@@ -207,17 +208,20 @@ open class OpalImagePickerRootViewController: UIViewController {
             let title = delegate?.imagePickerTitleForExternalItems?(imagePicker) {
             tabSegmentedControl.setTitle(title, forSegmentAt: 1)
         }
-        
+
         NSLayoutConstraint.activate([
-            toolbar.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
-            toolbar.leftAnchor.constraint(equalTo: view.leftAnchor),
-            toolbar.rightAnchor.constraint(equalTo: view.rightAnchor)
+            toolbar.constraintEqualTo(with: topLayoutGuide, receiverAttribute: .top, otherAttribute: .bottom),
+            toolbar.constraintEqualTo(with: view, attribute: .left),
+            toolbar.constraintEqualTo(with: view, attribute: .right)
             ])
     }
     
     fileprivate func fetchPhotos() {
         requestPhotoAccessIfNeeded(PHPhotoLibrary.authorizationStatus())
-        fetchOptions.fetchLimit = pageSize
+        
+        if #available(iOS 9.0, *) {
+            fetchOptions.fetchLimit = pageSize
+        }
         photoAssets = PHAsset.fetchAssets(with: fetchOptions)
         collectionView?.reloadData()
     }
@@ -333,6 +337,7 @@ open class OpalImagePickerRootViewController: UIViewController {
         return imagesDict[key]
     }
     
+    @available(iOS 9.0, *)
     fileprivate func fetchNextPageIfNeeded(indexPath: IndexPath) {
         guard indexPath.item == fetchLimit-1 else { return }
         
@@ -362,7 +367,7 @@ open class OpalImagePickerRootViewController: UIViewController {
         
         //Instantiate right constraint if needed
         if rightExternalCollectionViewConstraint == nil {
-            let rightConstraint = externalCollectionView?.rightAnchor.constraint(equalTo: view.rightAnchor)
+            let rightConstraint = externalCollectionView?.constraintEqualTo(with: view, attribute: .right)
             rightExternalCollectionViewConstraint = rightConstraint
         }
         rightExternalCollectionViewConstraint?.isActive = showExternalImages
@@ -456,7 +461,9 @@ extension OpalImagePickerRootViewController: UICollectionViewDataSource {
     }
     
     fileprivate func photoAssetCollectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        fetchNextPageIfNeeded(indexPath: indexPath)
+        if #available(iOS 9.0, *) {
+            fetchNextPageIfNeeded(indexPath: indexPath)
+        }
         
         guard let layoutAttributes = collectionView.collectionViewLayout.layoutAttributesForItem(at: indexPath),
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImagePickerCollectionViewCell.reuseId, for: indexPath) as? ImagePickerCollectionViewCell else { return UICollectionViewCell() }

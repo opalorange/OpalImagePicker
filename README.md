@@ -90,6 +90,12 @@ it, simply add the following line to your Podfile:
 pod 'OpalImagePicker'
 ```
 
+## Requirements
+
+- iOS 8.0+
+- Xcode 8.3+
+- Swift 3.1+
+
 ## Author
 
 [OpalOrange](http://opalorange.com) made this with ❤

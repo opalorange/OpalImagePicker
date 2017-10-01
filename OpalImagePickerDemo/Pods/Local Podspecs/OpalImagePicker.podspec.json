@@ -1,6 +1,6 @@
 {
   "name": "OpalImagePicker",
-  "version": "1.4.0",
+  "version": "1.6.0",
   "summary": "Multiple Selection Image Picker for iOS written in Swift",
   "homepage": "https://github.com/opalorange/OpalImagePicker",
   "license": {
@@ -12,11 +12,11 @@
   },
   "requires_arc": true,
   "platforms": {
-    "ios": "9.0"
+    "ios": "8.0"
   },
   "source": {
     "git": "https://github.com/opalorange/OpalImagePicker.git",
-    "tag": "1.4.0"
+    "tag": "1.6.0"
   },
   "source_files": "OpalImagePicker/Source/*.swift",
   "resource_bundles": {
@@ -25,6 +25,6 @@
     ]
   },
   "pod_target_xcconfig": {
-    "SWIFT_VERSION": "3.0"
+    "SWIFT_VERSION": "4.0"
   }
 }

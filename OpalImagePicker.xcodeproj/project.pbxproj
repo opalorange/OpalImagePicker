@@ -12,6 +12,7 @@
 		0181CB5F1E2DB3CF00928D85 /* MockOpalImagePickerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0181CB5E1E2DB3CF00928D85 /* MockOpalImagePickerControllerDelegate.swift */; };
 		0181CB651E2DB83100928D85 /* OpalImagePickerRootViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0181CB641E2DB83100928D85 /* OpalImagePickerRootViewControllerTest.swift */; };
 		01AE6CB31F3BBC9500222A6A /* OpalImagePickerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AE6CB21F3BBC9500222A6A /* OpalImagePickerConfiguration.swift */; };
+		01B2D5F31F805D89005D2473 /* UIView+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B2D5F21F805D89005D2473 /* UIView+Helper.swift */; };
 		01D2F91D1E2B6BC70038A37C /* Bundle+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D2F91C1E2B6BC70038A37C /* Bundle+Helper.swift */; };
 		01DD8B581E2B5DED0081B1FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DD8B551E2B5DED0081B1FC /* AppDelegate.swift */; };
 		01DD8B5A1E2B5DEE0081B1FC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DD8B571E2B5DED0081B1FC /* ViewController.swift */; };
@@ -40,6 +41,7 @@
 		0181CB5E1E2DB3CF00928D85 /* MockOpalImagePickerControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockOpalImagePickerControllerDelegate.swift; sourceTree = "<group>"; };
 		0181CB641E2DB83100928D85 /* OpalImagePickerRootViewControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpalImagePickerRootViewControllerTest.swift; sourceTree = "<group>"; };
 		01AE6CB21F3BBC9500222A6A /* OpalImagePickerConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpalImagePickerConfiguration.swift; sourceTree = "<group>"; };
+		01B2D5F21F805D89005D2473 /* UIView+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helper.swift"; sourceTree = "<group>"; };
 		01D2F91C1E2B6BC70038A37C /* Bundle+Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Helper.swift"; sourceTree = "<group>"; };
 		01DD8B301E2B5CB90081B1FC /* OpalImagePicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpalImagePicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01DD8B441E2B5CB90081B1FC /* OpalImagePickerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpalImagePickerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +123,7 @@
 				01DD8B691E2B5EDB0081B1FC /* OpalImagePickerCollectionViewLayout.swift */,
 				01DD8B631E2B5E2F0081B1FC /* UIViewController+OpalImagePicker.swift */,
 				01D2F91C1E2B6BC70038A37C /* Bundle+Helper.swift */,
+				01B2D5F21F805D89005D2473 /* UIView+Helper.swift */,
 				01DD8B671E2B5EA20081B1FC /* ImagePickerCollectionViewCell.swift */,
 			);
 			path = Source;
@@ -248,6 +251,7 @@
 				01AE6CB31F3BBC9500222A6A /* OpalImagePickerConfiguration.swift in Sources */,
 				01DD8B681E2B5EA20081B1FC /* ImagePickerCollectionViewCell.swift in Sources */,
 				0181CB5D1E2DB31E00928D85 /* OpalImagePickerRootViewController.swift in Sources */,
+				01B2D5F31F805D89005D2473 /* UIView+Helper.swift in Sources */,
 				01DD8B5A1E2B5DEE0081B1FC /* ViewController.swift in Sources */,
 				01DD8B581E2B5DED0081B1FC /* AppDelegate.swift in Sources */,
 				01DD8B6A1E2B5EDB0081B1FC /* OpalImagePickerCollectionViewLayout.swift in Sources */,
@@ -407,12 +411,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/OpalImagePicker/SupportingFiles/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.opalorange.OpalImagePicker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -422,11 +428,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/OpalImagePicker/SupportingFiles/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.opalorange.OpalImagePicker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

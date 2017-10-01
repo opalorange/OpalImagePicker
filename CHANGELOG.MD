@@ -1,4 +1,10 @@
-## [1.5.0](https://github.com/opalorange/OpalImagePicker/releases/tag/2.0.0)
+## [1.6.0](https://github.com/opalorange/OpalImagePicker/releases/tag/1.6.0)
+Released on 2017-09-24
+
+#### Added
+- Enhancement: Add support for iOS 8.0
+
+## [1.5.0](https://github.com/opalorange/OpalImagePicker/releases/tag/1.5.0)
 Released on 2017-09-24
 
 #### Added

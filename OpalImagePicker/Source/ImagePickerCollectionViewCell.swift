@@ -98,14 +98,9 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(imageView)
         self.imageView = imageView
         
-        NSLayoutConstraint.activate([
-            contentView.leftAnchor.constraint(equalTo: imageView.leftAnchor),
-            contentView.rightAnchor.constraint(equalTo: imageView.rightAnchor),
-            contentView.topAnchor.constraint(equalTo: imageView.topAnchor),
-            contentView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
-            contentView.centerXAnchor.constraint(equalTo: activityIndicator.centerXAnchor),
-            contentView.centerYAnchor.constraint(equalTo: activityIndicator.centerYAnchor)
-            ])
+        let constraintsToFill = contentView.constraintsToFill(otherView: imageView)
+        let constraintsToCenter = contentView.constraintsToCenter(otherView: activityIndicator)
+        NSLayoutConstraint.activate(constraintsToFill + constraintsToCenter)
         layoutIfNeeded()
     }
     
@@ -221,16 +216,9 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(overlayImageView)
         self.overlayImageView = overlayImageView
         
-        NSLayoutConstraint.activate([
-            contentView.leftAnchor.constraint(equalTo: overlayView.leftAnchor),
-            contentView.rightAnchor.constraint(equalTo: overlayView.rightAnchor),
-            contentView.topAnchor.constraint(equalTo: overlayView.topAnchor),
-            contentView.bottomAnchor.constraint(equalTo: overlayView.bottomAnchor),
-            contentView.leftAnchor.constraint(equalTo: overlayImageView.leftAnchor),
-            contentView.rightAnchor.constraint(equalTo: overlayImageView.rightAnchor),
-            contentView.topAnchor.constraint(equalTo: overlayImageView.topAnchor),
-            contentView.bottomAnchor.constraint(equalTo: overlayImageView.bottomAnchor)
-            ])
+        let overlayViewConstraints = overlayView.constraintsToFill(otherView: contentView)
+        let overlayImageViewConstraints = overlayImageView.constraintsToFill(otherView: contentView)
+        NSLayoutConstraint.activate(overlayImageViewConstraints + overlayViewConstraints)
         layoutIfNeeded()
         
         let duration = animated ? 0.2 : 0.0
