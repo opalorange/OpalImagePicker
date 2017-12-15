@@ -115,7 +115,7 @@ open class OpalImagePickerController: UINavigationController {
     }
     
     /// Allowed Media Types that can be fetched. See `PHAssetMediaType`
-    @objc open var allowedMediaTypes: Set<PHAssetMediaType>? {
+    open var allowedMediaTypes: Set<PHAssetMediaType>? {
         didSet {
             let rootVC = viewControllers.first as? OpalImagePickerRootViewController
             rootVC?.allowedMediaTypes = allowedMediaTypes
@@ -123,7 +123,7 @@ open class OpalImagePickerController: UINavigationController {
     }
     
     /// Allowed MediaSubtype that can be fetched. Can be applied as `OptionSet`. See `PHAssetMediaSubtype`
-    @objc open var allowedMediaSubtypes: PHAssetMediaSubtype? {
+    open var allowedMediaSubtypes: PHAssetMediaSubtype? {
         didSet {
             let rootVC = viewControllers.first as? OpalImagePickerRootViewController
             rootVC?.allowedMediaSubtypes = allowedMediaSubtypes
