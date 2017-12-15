@@ -67,7 +67,7 @@ import Photos
 open class OpalImagePickerController: UINavigationController {
     
     /// Image Picker Delegate. Notifies when images are selected or image picker is cancelled.
-    open weak var imagePickerDelegate: OpalImagePickerControllerDelegate? {
+    @objc open weak var imagePickerDelegate: OpalImagePickerControllerDelegate? {
         didSet {
             let rootVC = viewControllers.first as? OpalImagePickerRootViewController
             rootVC?.delegate = imagePickerDelegate
@@ -75,7 +75,7 @@ open class OpalImagePickerController: UINavigationController {
     }
 
     /// Configuration to change Localized Strings
-    open var configuration: OpalImagePickerConfiguration? {
+    @objc open var configuration: OpalImagePickerConfiguration? {
         didSet {
             let rootVC = viewControllers.first as? OpalImagePickerRootViewController
             rootVC?.configuration = configuration
@@ -83,7 +83,7 @@ open class OpalImagePickerController: UINavigationController {
     }
     
     /// Custom Tint Color for overlay of selected images.
-    open var selectionTintColor: UIColor? {
+    @objc open var selectionTintColor: UIColor? {
         didSet {
             let rootVC = viewControllers.first as? OpalImagePickerRootViewController
             rootVC?.selectionTintColor = selectionTintColor
@@ -91,7 +91,7 @@ open class OpalImagePickerController: UINavigationController {
     }
     
     /// Custom Tint Color for selection image (checkmark).
-    open var selectionImageTintColor: UIColor? {
+    @objc open var selectionImageTintColor: UIColor? {
         didSet {
             let rootVC = viewControllers.first as? OpalImagePickerRootViewController
             rootVC?.selectionImageTintColor = selectionImageTintColor
@@ -99,7 +99,7 @@ open class OpalImagePickerController: UINavigationController {
     }
     
     /// Custom selection image (checkmark).
-    open var selectionImage: UIImage? {
+    @objc open var selectionImage: UIImage? {
         didSet {
             let rootVC = viewControllers.first as? OpalImagePickerRootViewController
             rootVC?.selectionImage = selectionImage
@@ -107,7 +107,7 @@ open class OpalImagePickerController: UINavigationController {
     }
     
     /// Maximum photo selections allowed in picker (zero or fewer means unlimited).
-    open var maximumSelectionsAllowed: Int = -1 {
+    @objc open var maximumSelectionsAllowed: Int = -1 {
         didSet {
             let rootVC = viewControllers.first as? OpalImagePickerRootViewController
             rootVC?.maximumSelectionsAllowed = maximumSelectionsAllowed
@@ -131,10 +131,10 @@ open class OpalImagePickerController: UINavigationController {
     }
     
     /// Status Bar Preference (defaults to `default`)
-    open var statusBarPreference = UIStatusBarStyle.default
+    @objc open var statusBarPreference = UIStatusBarStyle.default
     
     /// External `UIToolbar` barTintColor.
-    open var externalToolbarBarTintColor: UIColor? {
+    @objc open var externalToolbarBarTintColor: UIColor? {
         didSet {
             let rootVC = viewControllers.first as? OpalImagePickerRootViewController
             rootVC?.toolbar.barTintColor = externalToolbarBarTintColor
@@ -142,7 +142,7 @@ open class OpalImagePickerController: UINavigationController {
     }
     
     /// External `UIToolbar` and `UISegmentedControl` tint color.
-    open var externalToolbarTintColor: UIColor? {
+    @objc open var externalToolbarTintColor: UIColor? {
         didSet {
             let rootVC = viewControllers.first as? OpalImagePickerRootViewController
             rootVC?.toolbar.tintColor = externalToolbarTintColor
