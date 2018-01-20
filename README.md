@@ -10,7 +10,7 @@
 **OpalImagePicker** is a multiple selection Image Picker for iOS written in Swift. Meant to be a drop in replacement for UIImagePickerController. Compatible with both Swift and Objective-C.
 
 ## Swift 3 and Swift 4 Compatibility
-- **Swift 4.x**: >= 1.5.0 - Latest is 1.5.0 [Download here](https://github.com/opalorange/OpalImagePicker/releases/tag/1.5.0).
+- **Swift 4.x**: >= 1.5.0 - Latest is 1.7.0 [Download here](https://github.com/opalorange/OpalImagePicker/releases/tag/1.7.0).
 - **Swift 3.x**: Latest compatible version is 1.4.0 [Download here](https://github.com/opalorange/OpalImagePicker/releases/tag/1.4.0). If you are using CocoaPods be sure to fix the release (`pod 'OpalImagePicker', '~> 1.4.0'`)
 
 ## Usage
