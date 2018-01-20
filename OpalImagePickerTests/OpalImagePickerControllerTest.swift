@@ -9,7 +9,6 @@
 import XCTest
 import OpalImagePicker
 
-
 class OpalImagePickerControllerTest: XCTestCase {
     
     override func setUp() {
@@ -27,8 +26,8 @@ class OpalImagePickerControllerTest: XCTestCase {
         let imagePicker = OpalImagePickerController()
         imagePicker.imagePickerDelegate = mockDelegate
         
-        let rootVC = imagePicker.viewControllers[0] as! OpalImagePickerRootViewController
-        XCTAssert(mockDelegate === rootVC.delegate)
+        let rootVC = imagePicker.viewControllers[0] as? OpalImagePickerRootViewController
+        XCTAssert(mockDelegate === rootVC?.delegate)
     }
     
     func testSetSelectionTintColor() {
@@ -36,8 +35,8 @@ class OpalImagePickerControllerTest: XCTestCase {
         let imagePicker = OpalImagePickerController()
         imagePicker.selectionTintColor = tintColor
         
-        let rootVC = imagePicker.viewControllers[0] as! OpalImagePickerRootViewController
-        XCTAssertEqual(tintColor, rootVC.selectionTintColor)
+        let rootVC = imagePicker.viewControllers[0] as? OpalImagePickerRootViewController
+        XCTAssertEqual(tintColor, rootVC?.selectionTintColor)
     }
     
     func testSetSelectionImageTintColor() {
@@ -45,8 +44,8 @@ class OpalImagePickerControllerTest: XCTestCase {
         let imagePicker = OpalImagePickerController()
         imagePicker.selectionImageTintColor = tintColor
         
-        let rootVC = imagePicker.viewControllers[0] as! OpalImagePickerRootViewController
-        XCTAssertEqual(tintColor, rootVC.selectionImageTintColor)
+        let rootVC = imagePicker.viewControllers[0] as? OpalImagePickerRootViewController
+        XCTAssertEqual(tintColor, rootVC?.selectionImageTintColor)
     }
     
     func testSetSelectionImage() {
@@ -54,8 +53,8 @@ class OpalImagePickerControllerTest: XCTestCase {
         let imagePicker = OpalImagePickerController()
         imagePicker.selectionImage = image
         
-        let rootVC = imagePicker.viewControllers[0] as! OpalImagePickerRootViewController
-        XCTAssertEqual(image, rootVC.selectionImage)
+        let rootVC = imagePicker.viewControllers[0] as? OpalImagePickerRootViewController
+        XCTAssertEqual(image, rootVC?.selectionImage)
     }
     
     func testInit() {

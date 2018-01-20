@@ -8,10 +8,8 @@
 
 import UIKit
 
-
 /// Collection View Layout that evenly lays out the images in the Image Picker.
 open class OpalImagePickerCollectionViewLayout: UICollectionViewLayout {
-    
     
     /// Estimated Image Size. Used as a minimum image size to determine how many images should be go across to cover the width. You can override for different display preferences. Assumed to be greater than 0.
     open var estimatedImageSize: CGFloat {
@@ -20,8 +18,7 @@ open class OpalImagePickerCollectionViewLayout: UICollectionViewLayout {
     }
     
     var sizeOfItem: CGFloat = 0
-    fileprivate var cellLayoutInfo: [IndexPath:UICollectionViewLayoutAttributes] = [:]
-    
+    private var cellLayoutInfo: [IndexPath: UICollectionViewLayoutAttributes] = [:]
     
     /// Prepare for Collection View Update
     ///
@@ -30,12 +27,10 @@ open class OpalImagePickerCollectionViewLayout: UICollectionViewLayout {
         updateItemSizes()
     }
     
-    
     /// Prepare the layout
     open override func prepare() {
         updateItemSizes()
     }
-    
     
     /// Returns `Bool` telling should invalidate layout
     ///
@@ -45,7 +40,6 @@ open class OpalImagePickerCollectionViewLayout: UICollectionViewLayout {
         return true
     }
     
-    
     /// Returns layout attributes for indexPath
     ///
     /// - Parameter indexPath: the `IndexPath`
@@ -53,7 +47,6 @@ open class OpalImagePickerCollectionViewLayout: UICollectionViewLayout {
     open override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         return cellLayoutInfo[indexPath]
     }
-    
     
     /// Returns a list of layout attributes for items in rect
     ///
@@ -66,7 +59,6 @@ open class OpalImagePickerCollectionViewLayout: UICollectionViewLayout {
             return layoutAttribute.frame.intersects(rect) && indexPath.item < numberOfItems
             }.map { $0.value }
     }
-    
     
     /// Collection View Content Size
     open override var collectionViewContentSize: CGSize {
@@ -88,7 +80,7 @@ open class OpalImagePickerCollectionViewLayout: UICollectionViewLayout {
         return size
     }
     
-    fileprivate func updateItemSizes() {
+    private func updateItemSizes() {
         guard let collectionView = self.collectionView else { return }
         let numberOfItemsAcross = Int(collectionView.bounds.width/estimatedImageSize)
         

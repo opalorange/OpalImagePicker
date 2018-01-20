@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		010B06532013B5E6002811B6 /* TimeInterval+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010B06522013B5E6002811B6 /* TimeInterval+String.swift */; };
 		0181CB5B1E2DB2AE00928D85 /* OpalImagePickerControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0181CB5A1E2DB2AE00928D85 /* OpalImagePickerControllerTest.swift */; };
 		0181CB5D1E2DB31E00928D85 /* OpalImagePickerRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0181CB5C1E2DB31E00928D85 /* OpalImagePickerRootViewController.swift */; };
 		0181CB5F1E2DB3CF00928D85 /* MockOpalImagePickerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0181CB5E1E2DB3CF00928D85 /* MockOpalImagePickerControllerDelegate.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		010B06522013B5E6002811B6 /* TimeInterval+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+String.swift"; sourceTree = "<group>"; };
 		0181CB5A1E2DB2AE00928D85 /* OpalImagePickerControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpalImagePickerControllerTest.swift; sourceTree = "<group>"; };
 		0181CB5C1E2DB31E00928D85 /* OpalImagePickerRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpalImagePickerRootViewController.swift; sourceTree = "<group>"; };
 		0181CB5E1E2DB3CF00928D85 /* MockOpalImagePickerControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockOpalImagePickerControllerDelegate.swift; sourceTree = "<group>"; };
@@ -117,14 +119,15 @@
 		01DD8B531E2B5CC50081B1FC /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				01DD8B631E2B5E2F0081B1FC /* UIViewController+OpalImagePicker.swift */,
 				01AE6CB21F3BBC9500222A6A /* OpalImagePickerConfiguration.swift */,
 				01DD8B651E2B5E6C0081B1FC /* OpalImagePickerController.swift */,
 				0181CB5C1E2DB31E00928D85 /* OpalImagePickerRootViewController.swift */,
 				01DD8B691E2B5EDB0081B1FC /* OpalImagePickerCollectionViewLayout.swift */,
-				01DD8B631E2B5E2F0081B1FC /* UIViewController+OpalImagePicker.swift */,
+				01DD8B671E2B5EA20081B1FC /* ImagePickerCollectionViewCell.swift */,
 				01D2F91C1E2B6BC70038A37C /* Bundle+Helper.swift */,
 				01B2D5F21F805D89005D2473 /* UIView+Helper.swift */,
-				01DD8B671E2B5EA20081B1FC /* ImagePickerCollectionViewCell.swift */,
+				010B06522013B5E6002811B6 /* TimeInterval+String.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -152,6 +155,7 @@
 				01DD8B2C1E2B5CB90081B1FC /* Sources */,
 				01DD8B2D1E2B5CB90081B1FC /* Frameworks */,
 				01DD8B2E1E2B5CB90081B1FC /* Resources */,
+				010B06542013BA30002811B6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -242,6 +246,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		010B06542013BA30002811B6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		01DD8B2C1E2B5CB90081B1FC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -252,6 +272,7 @@
 				01DD8B681E2B5EA20081B1FC /* ImagePickerCollectionViewCell.swift in Sources */,
 				0181CB5D1E2DB31E00928D85 /* OpalImagePickerRootViewController.swift in Sources */,
 				01B2D5F31F805D89005D2473 /* UIView+Helper.swift in Sources */,
+				010B06532013B5E6002811B6 /* TimeInterval+String.swift in Sources */,
 				01DD8B5A1E2B5DEE0081B1FC /* ViewController.swift in Sources */,
 				01DD8B581E2B5DED0081B1FC /* AppDelegate.swift in Sources */,
 				01DD8B6A1E2B5EDB0081B1FC /* OpalImagePickerCollectionViewLayout.swift in Sources */,
@@ -449,7 +470,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.opalorange.OpalImagePickerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpalImagePicker.app/OpalImagePicker";
 			};
@@ -464,7 +485,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.opalorange.OpalImagePickerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpalImagePicker.app/OpalImagePicker";
 			};

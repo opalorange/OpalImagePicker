@@ -22,15 +22,14 @@ class ViewController: UIViewController {
         let imagePicker = OpalImagePickerController()
 
         //Present Image Picker
-        presentOpalImagePickerController(imagePicker, animated: true, select: { (assets) in
-            //TODO: Save Images, update UI
+        presentOpalImagePickerController(imagePicker, animated: true, select: { (_) in
+            //Save Images, update UI
 
             //Dismiss Controller
             imagePicker.dismiss(animated: true, completion: nil)
         }, cancel: {
-            //TODO: Cancel action?
+            //Cancel action?
 
         })
     }
 }
-

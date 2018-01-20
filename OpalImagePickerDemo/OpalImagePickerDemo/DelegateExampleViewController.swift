@@ -21,11 +21,11 @@ class DelegateExampleViewController: UIViewController {
 
 extension DelegateExampleViewController: OpalImagePickerControllerDelegate {
     func imagePickerDidCancel(_ picker: OpalImagePickerController) {
-        //TODO: Cancel action?
+        //Cancel action?
     }
     
     func imagePicker(_ picker: OpalImagePickerController, didFinishPickingImages images: [UIImage]) {
-        //TODO: Save Images, update UI
+        //Save Images, update UI
         
         //Dismiss Controller
         presentedViewController?.dismiss(animated: true, completion: nil)

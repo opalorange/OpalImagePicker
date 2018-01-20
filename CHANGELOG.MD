@@ -1,3 +1,12 @@
+## [1.7.1](https://github.com/opalorange/OpalImagePicker/releases/tag/1.6.0)
+Released on 2018-01-19
+
+- SwiftLint for coding standards improvement
+
+#### Fixed
+- Bug fix: Retrieve full images for imagePicker(_:didFinishPickingImages:)
+
+
 ## [1.7.0](https://github.com/opalorange/OpalImagePicker/releases/tag/1.6.0)
 Released on 2018-01-19
 

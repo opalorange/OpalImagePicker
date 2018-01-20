@@ -81,8 +81,8 @@ class OpalImagePickerRootViewControllerTest: XCTestCase {
         let mockDelegate = MockOpalImagePickerControllerDelegate()
         let imagePicker = OpalImagePickerController()
         imagePicker.imagePickerDelegate = mockDelegate
-        let rootVC = imagePicker.viewControllers[0] as! OpalImagePickerRootViewController
-        rootVC.doneTapped()
+        let rootVC = imagePicker.viewControllers[0] as? OpalImagePickerRootViewController
+        rootVC?.doneTapped()
         XCTAssertFalse(mockDelegate.isDidFinishPickingAssetsCalled)
     }
 }

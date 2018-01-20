@@ -119,9 +119,8 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
     
     weak var overlayView: UIView?
     weak var overlayImageView: UIImageView?
-    
-    fileprivate var imageRequestID: PHImageRequestID?
-    fileprivate var urlDataTask: URLSessionTask?
+    private var imageRequestID: PHImageRequestID?
+    private var urlDataTask: URLSessionTask?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -177,34 +176,29 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
         setSelected(false, animated: false)
     }
     
-    fileprivate func loadPhotoAssetIfNeeded() {
+    private func loadPhotoAssetIfNeeded() {
         guard let asset = photoAsset, let size = self.size else { return }
         
         let options = PHImageRequestOptions()
         options.deliveryMode = .highQualityFormat
-        options.resizeMode = .exact
+        options.resizeMode = .fast
         options.isSynchronous = false
         options.isNetworkAccessAllowed = true
         
-        let duration = string(from: asset.duration)
-        timeText = asset.duration > 0 ? duration : nil
+        timeText = asset.duration > 0 ? asset.duration.string() : nil
         
         let manager = PHImageManager.default()
         let newSize = CGSize(width: size.width * type(of: self).scale,
                              height: size.height * type(of: self).scale)
         activityIndicator.startAnimating()
-        imageRequestID = manager.requestImage(for: asset, targetSize: newSize, contentMode: .aspectFill, options: options, resultHandler: { [weak self] (result, info) in
+        imageRequestID = manager.requestImage(for: asset, targetSize: newSize, contentMode: .aspectFill, options: options, resultHandler: { [weak self] (result, _) in
             self?.activityIndicator.stopAnimating()
             self?.imageRequestID = nil
-            guard let result = result else {
-                self?.imageView.image = nil
-                return
-            }
             self?.imageView.image = result
         })
     }
     
-    fileprivate func loadURLIfNeeded() {
+    private func loadURLIfNeeded() {
         guard let url = self.url,
             let indexPath = self.indexPath else {
                 activityIndicator.stopAnimating()
@@ -239,23 +233,21 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
                                        forKey: indexPath as NSIndexPath,
                                        cost: data.count)
                 
-                
                 self?.imageView.image = image
             }
         }
         urlDataTask?.resume()
     }
     
-    fileprivate func updateSelected(_ animated: Bool) {
+    private func updateSelected(_ animated: Bool) {
         if isSelected {
             addOverlay(animated)
-        }
-        else {
+        } else {
             removeOverlay(animated)
         }
     }
     
-    fileprivate func addOverlay(_ animated: Bool) {
+    private func addOverlay(_ animated: Bool) {
         guard self.overlayView == nil && self.overlayImageView == nil else { return }
         
         let overlayView = UIView(frame: frame)
@@ -285,7 +277,7 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
         })
     }
     
-    fileprivate func removeOverlay(_ animated: Bool) {
+    private func removeOverlay(_ animated: Bool) {
         guard let overlayView = self.overlayView,
             let overlayImageView = self.overlayImageView else {
                 self.overlayView?.removeFromSuperview()
@@ -301,16 +293,5 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
             overlayView.removeFromSuperview()
             overlayImageView.removeFromSuperview()
         })
-    }
-    
-    fileprivate func string(from interval: TimeInterval) -> String {
-        let interval = Int(interval)
-        let seconds = interval % 60
-        let minutes = (interval / 60) % 60
-        let hours = (interval / 3600)
-        if hours == 0 {
-            return String(format: "%d:%02d", minutes, seconds)
-        }
-        return String(format: "%d:%02d:%02d", hours, minutes, seconds)
     }
 }

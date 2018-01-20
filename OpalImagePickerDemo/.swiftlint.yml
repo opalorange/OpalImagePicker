@@ -1,0 +1,6 @@
+disabled_rules:
+  - line_length
+  - trailing_whitespace
+  - function_parameter_count
+  - type_body_length
+  - file_length

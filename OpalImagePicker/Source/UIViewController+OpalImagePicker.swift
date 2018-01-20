@@ -27,7 +27,6 @@ public extension UIViewController {
         present(imagePicker, animated: animated, completion: completion)
     }
     
-    
     /// Present Image Picker with External Images using closures rather than delegation.
     ///
     /// - Parameters:
@@ -66,7 +65,7 @@ class OpalImagePickerWithExternalItemsManager: OpalImagePickerManager {
     
     static let sharedWithExternalItems = OpalImagePickerWithExternalItemsManager()
     
-    fileprivate override init() { }
+    override init() { }
     
     func imagePickerNumberOfExternalItems(_ picker: OpalImagePickerController) -> Int {
         return numberOfExternalItems
@@ -83,6 +82,10 @@ class OpalImagePickerWithExternalItemsManager: OpalImagePickerManager {
     func imagePicker(_ picker: OpalImagePickerController, didFinishPickingExternalURLs urls: [URL]) {
         selectURLs?(urls)
     }
+    
+    func imagePickerDidFinishPickingImages(_ picker: OpalImagePickerController, images: [UIImage]) {
+        selectImages?(images)
+    }
 }
 
 class OpalImagePickerManager: NSObject {
@@ -90,7 +93,7 @@ class OpalImagePickerManager: NSObject {
     var cancel: (() -> Void)?
     
     static var shared = OpalImagePickerManager()
-    fileprivate override init() { }
+    override init() { }
 }
 
 extension OpalImagePickerManager: OpalImagePickerControllerDelegate {
