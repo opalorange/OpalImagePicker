@@ -1,4 +1,11 @@
 ## [1.6.0](https://github.com/opalorange/OpalImagePicker/releases/tag/1.6.0)
+Released on 2018-01-19
+
+#### Added
+- Enhancement: Add time label for video assets #14
+- Enhancement: Exposed OpalImagePickerController methods and properties to ObjC
+
+## [1.6.0](https://github.com/opalorange/OpalImagePicker/releases/tag/1.6.0)
 Released on 2017-09-24
 
 #### Added

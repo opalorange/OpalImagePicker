@@ -403,7 +403,7 @@ extension OpalImagePickerRootViewController: UICollectionViewDelegate {
     ///   - indexPath: the `IndexPath`
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? ImagePickerCollectionViewCell,
-            let image = cell.imageView?.image else { return }
+            let image = cell.imageView.image else { return }
         set(image: image, indexPath: indexPath, isExternal: collectionView == self.externalCollectionView)
     }
     
@@ -419,7 +419,7 @@ extension OpalImagePickerRootViewController: UICollectionViewDelegate {
     
     public func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         guard let cell = collectionView.cellForItem(at: indexPath) as? ImagePickerCollectionViewCell,
-            cell.imageView?.image != nil else { return false }
+            cell.imageView.image != nil else { return false }
         guard maximumSelectionsAllowed > 0 else { return true }
         
         let collectionViewItems = self.collectionView?.indexPathsForSelectedItems?.count ?? 0
