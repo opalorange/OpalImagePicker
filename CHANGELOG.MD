@@ -1,3 +1,8 @@
+## [1.7.2](https://github.com/opalorange/OpalImagePicker/releases/tag/1.6.0)
+Released on 2018-04-07
+
+- Bug fix: Live photos load slowly, can cause photos to become jumbled/out of order when scrolling quickly #24
+
 ## [1.7.1](https://github.com/opalorange/OpalImagePicker/releases/tag/1.6.0)
 Released on 2018-01-19
 

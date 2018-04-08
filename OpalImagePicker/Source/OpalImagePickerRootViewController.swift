@@ -483,6 +483,7 @@ extension OpalImagePickerRootViewController: UICollectionViewDataSource {
         guard let layoutAttributes = collectionView.collectionViewLayout.layoutAttributesForItem(at: indexPath),
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImagePickerCollectionViewCell.reuseId, for: indexPath) as? ImagePickerCollectionViewCell else { return UICollectionViewCell() }
         let photoAsset = photoAssets.object(at: indexPath.item)
+        cell.indexPath = indexPath
         cell.photoAsset = photoAsset
         cell.size = layoutAttributes.frame.size
         

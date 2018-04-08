@@ -177,7 +177,8 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
     }
     
     private func loadPhotoAssetIfNeeded() {
-        guard let asset = photoAsset, let size = self.size else { return }
+        guard let indexPath = self.indexPath,
+            let asset = photoAsset, let size = self.size else { return }
         
         let options = PHImageRequestOptions()
         options.deliveryMode = .highQualityFormat
@@ -192,8 +193,8 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
                              height: size.height * type(of: self).scale)
         activityIndicator.startAnimating()
         imageRequestID = manager.requestImage(for: asset, targetSize: newSize, contentMode: .aspectFill, options: options, resultHandler: { [weak self] (result, _) in
+            guard self?.indexPath?.item == indexPath.item else { return }
             self?.activityIndicator.stopAnimating()
-            self?.imageRequestID = nil
             self?.imageView.image = result
         })
     }
