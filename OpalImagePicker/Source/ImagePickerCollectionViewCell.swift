@@ -195,6 +195,7 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
         imageRequestID = manager.requestImage(for: asset, targetSize: newSize, contentMode: .aspectFill, options: options, resultHandler: { [weak self] (result, _) in
             guard self?.indexPath?.item == indexPath.item else { return }
             self?.activityIndicator.stopAnimating()
+            self?.imageRequestID = nil
             self?.imageView.image = result
         })
     }
