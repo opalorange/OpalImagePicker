@@ -26,11 +26,11 @@ extension UIView {
         ]
     }
     
-    func constraintEqualTo(with otherView: Any, attribute: NSLayoutAttribute, constant: CGFloat = 0) -> NSLayoutConstraint {
+    func constraintEqualTo(with otherView: Any, attribute: NSLayoutConstraint.Attribute, constant: CGFloat = 0) -> NSLayoutConstraint {
         return NSLayoutConstraint(item: self, attribute: attribute, relatedBy: .equal, toItem: otherView, attribute: attribute, multiplier: 1.0, constant: constant)
     }
     
-    func constraintEqualTo(with otherView: Any, receiverAttribute: NSLayoutAttribute, otherAttribute: NSLayoutAttribute) -> NSLayoutConstraint {
+    func constraintEqualTo(with otherView: Any, receiverAttribute: NSLayoutConstraint.Attribute, otherAttribute: NSLayoutConstraint.Attribute) -> NSLayoutConstraint {
         return NSLayoutConstraint(item: self, attribute: receiverAttribute, relatedBy: .equal, toItem: otherView, attribute: otherAttribute, multiplier: 1.0, constant: 0.0)
     }
 }
