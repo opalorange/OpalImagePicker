@@ -85,7 +85,7 @@ open class OpalImagePickerRootViewController: UIViewController {
     open var maximumSelectionsAllowed: Int = -1
     
     /// Page size for paging through the Photo Assets in the Photo Library. Defaults to 100. Must override to change this value. Only works in iOS 9.0+
-    open let pageSize = 100
+    public let pageSize = 100
     
     var photoAssets: PHFetchResult<PHAsset> = PHFetchResult()
     weak var doneButton: UIBarButtonItem?
@@ -365,8 +365,8 @@ open class OpalImagePickerRootViewController: UIViewController {
         photoAssets = PHAsset.fetchAssets(with: fetchOptions)
         
         var indexPaths: [IndexPath] = []
-        for i in oldFetchLimit..<photoAssets.count {
-            indexPaths += [IndexPath(item: i, section: 0)]
+        for item in oldFetchLimit..<photoAssets.count {
+            indexPaths += [IndexPath(item: item, section: 0)]
         }
         collectionView?.insertItems(at: indexPaths)
     }

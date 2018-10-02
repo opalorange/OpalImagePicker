@@ -1,9 +1,14 @@
-## [1.7.2](https://github.com/opalorange/OpalImagePicker/releases/tag/1.6.0)
+## [2.0.0](https://github.com/opalorange/OpalImagePicker/releases/tag/2.0.0)
+Released on 2018-10-02
+
+- Enhancement: Support for Swift 4.2 and Xcode 10.0
+
+## [1.7.2](https://github.com/opalorange/OpalImagePicker/releases/tag/1.7.2)
 Released on 2018-04-07
 
 - Bug fix: Live photos load slowly, can cause photos to become jumbled/out of order when scrolling quickly #24
 
-## [1.7.1](https://github.com/opalorange/OpalImagePicker/releases/tag/1.6.0)
+## [1.7.1](https://github.com/opalorange/OpalImagePicker/releases/tag/1.7.1)
 Released on 2018-01-19
 
 - SwiftLint for coding standards improvement
@@ -12,7 +17,7 @@ Released on 2018-01-19
 - Bug fix: Retrieve full images for imagePicker(_:didFinishPickingImages:)
 
 
-## [1.7.0](https://github.com/opalorange/OpalImagePicker/releases/tag/1.6.0)
+## [1.7.0](https://github.com/opalorange/OpalImagePicker/releases/tag/1.7.0)
 Released on 2018-01-19
 
 #### Added

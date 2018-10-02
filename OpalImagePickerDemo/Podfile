@@ -20,7 +20,7 @@ post_install do |installer|
         swift_version = nil
         
         if swift4.include?(target.name)
-            swift_version = '4.0'
+            swift_version = '4.2'
         end
         
         if swift_version
