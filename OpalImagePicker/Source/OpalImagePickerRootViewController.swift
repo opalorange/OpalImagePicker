@@ -143,6 +143,7 @@ open class OpalImagePickerRootViewController: UIViewController {
     }
     
     private func setup() {
+        guard let view = view else { return }
         fetchPhotos()
         
         let collectionView = UICollectionView(frame: view.frame, collectionViewLayout: OpalImagePickerCollectionViewLayout())
@@ -189,6 +190,8 @@ open class OpalImagePickerRootViewController: UIViewController {
     }
     
     private func setupTabs() {
+        guard let view = view else { return }
+        
         edgesForExtendedLayout = UIRectEdge()
         navigationController?.navigationBar.isTranslucent = false
         toolbar.isTranslucent = false
@@ -203,7 +206,7 @@ open class OpalImagePickerRootViewController: UIViewController {
             let title = delegate?.imagePickerTitleForExternalItems?(imagePicker) {
             tabSegmentedControl.setTitle(title, forSegmentAt: 1)
         }
-
+        
         NSLayoutConstraint.activate([
             toolbar.constraintEqualTo(with: topLayoutGuide, receiverAttribute: .top, otherAttribute: .bottom),
             toolbar.constraintEqualTo(with: view, attribute: .left),
@@ -382,6 +385,8 @@ open class OpalImagePickerRootViewController: UIViewController {
     }
     
     @objc private func segmentTapped(_ sender: UISegmentedControl) {
+        guard let view = view else { return }
+        
         showExternalImages = sender.selectedSegmentIndex == 1
         
         //Instantiate right constraint if needed

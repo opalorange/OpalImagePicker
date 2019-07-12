@@ -19,7 +19,7 @@ public extension UIViewController {
     ///   - select: notifies when selection of `[PHAsset]` has been made
     ///   - cancel: notifies when Image Picker has been cancelled by user
     ///   - completion: notifies when the Image Picker finished presenting
-    public func presentOpalImagePickerController(_ imagePicker: OpalImagePickerController, animated: Bool, select: @escaping (([PHAsset]) -> Void), cancel: @escaping (() -> Void), completion: (() -> Void)? = nil) {
+    func presentOpalImagePickerController(_ imagePicker: OpalImagePickerController, animated: Bool, select: @escaping (([PHAsset]) -> Void), cancel: @escaping (() -> Void), completion: (() -> Void)? = nil) {
         let manager = OpalImagePickerManager.shared
         manager.selectAssets = select
         manager.cancel = cancel
@@ -41,7 +41,7 @@ public extension UIViewController {
     ///   - selectExternalURLs: notifies that image selections have completed with an array of `URL`
     ///   - cancel: notifies when Image Picker has been cancelled by user
     ///   - completion: notifies when the Image Picker finished presenting
-    public func presentOpalImagePickerController(_ imagePicker: OpalImagePickerController, animated: Bool, maximumSelectionsAllowed: Int = 10, numberOfExternalItems: Int, externalItemsTitle: String, externalURLForIndex: @escaping (Int) -> URL?, selectImages: (([UIImage]) -> Void)? = nil, selectAssets: (([PHAsset]) -> Void)? = nil, selectExternalURLs: (([URL]) -> Void)? = nil, cancel: @escaping () -> Void, completion: (() -> Void)? = nil) {
+    func presentOpalImagePickerController(_ imagePicker: OpalImagePickerController, animated: Bool, maximumSelectionsAllowed: Int = 10, numberOfExternalItems: Int, externalItemsTitle: String, externalURLForIndex: @escaping (Int) -> URL?, selectImages: (([UIImage]) -> Void)? = nil, selectAssets: (([PHAsset]) -> Void)? = nil, selectExternalURLs: (([URL]) -> Void)? = nil, cancel: @escaping () -> Void, completion: (() -> Void)? = nil) {
         let manager = OpalImagePickerWithExternalItemsManager.sharedWithExternalItems
         manager.selectImages = selectImages
         manager.selectAssets = selectAssets

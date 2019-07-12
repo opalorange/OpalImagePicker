@@ -1,3 +1,8 @@
+## [2.1.0](https://github.com/opalorange/OpalImagePicker/releases/tag/2.1.0)
+Released on 2019-07-11
+
+- Enhancement: Support for Swift 5.0 and Xcode 10.2.1. Support for Cocoapods 1.7.0
+
 ## [2.0.0](https://github.com/opalorange/OpalImagePicker/releases/tag/2.0.0)
 Released on 2018-10-02
 
