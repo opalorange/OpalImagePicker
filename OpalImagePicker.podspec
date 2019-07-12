@@ -11,5 +11,5 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/opalorange/OpalImagePicker.git", :tag => s.version }
   s.source_files  = "OpalImagePicker/Source/*.swift"
   s.resource_bundles = { 'OpalImagePickerResources' => ['OpalImagePicker/SupportingFiles/**/*.xcassets'] }
-  s.swift_version = '5.0'
+  s.swift_versions = ['4.2', '5.0']
 end
