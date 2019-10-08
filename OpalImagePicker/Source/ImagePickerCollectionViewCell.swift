@@ -63,7 +63,7 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
     
     open var selectionImage: UIImage? {
         didSet {
-            overlayImageView?.image = selectionImage?.withRenderingMode(.alwaysTemplate)
+            overlayImageView?.image = selectionImage?.withRenderingMode(.alwaysOriginal)
         }
     }
     
@@ -260,7 +260,7 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
         
         let overlayImageView = UIImageView(frame: frame)
         overlayImageView.translatesAutoresizingMaskIntoConstraints = false
-        overlayImageView.contentMode = .center
+        overlayImageView.contentMode = .scaleAspectFit
         overlayImageView.image = selectionImage ?? UIImage(named: "checkmark", in: Bundle.podBundle(forClass: type(of: self).self), compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
         overlayImageView.tintColor = selectionImageTintColor
         overlayImageView.alpha = 0
