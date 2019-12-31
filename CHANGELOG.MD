@@ -1,3 +1,8 @@
+## [2.1.2](https://github.com/opalorange/OpalImagePicker/releases/tag/2.1.2)
+Released on 2019-12-31
+
+- The OpalImagePickerConfiguration isn't usable from Objective-C because the properties aren't defined with @objc.
+
 ## [2.1.1](https://github.com/opalorange/OpalImagePicker/releases/tag/2.1.1)
 Released on 2019-12-31
 
