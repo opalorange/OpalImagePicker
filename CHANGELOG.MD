@@ -1,3 +1,9 @@
+## [2.1.1](https://github.com/opalorange/OpalImagePicker/releases/tag/2.1.1)
+Released on 2019-12-31
+
+- Deprecate: UIImage based APIs. Instead users will need to use PHAsset and handle downloading from iCloud.
+
+
 ## [2.1.0](https://github.com/opalorange/OpalImagePicker/releases/tag/2.1.0)
 Released on 2019-07-11
 

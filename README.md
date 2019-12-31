@@ -39,15 +39,13 @@ present(imagePicker, animated: true, completion: nil)
 **OpalImagePicker** has three delegate methods to notify you when images have been selected, or the picker has been cancelled. This is only necessary if you choose not to use the **presentOpalImagePickerController(_:animated:select:cancel:completion:)** function.
 
 ```swift
-optional func imagePicker(_ picker: OpalImagePickerController, didFinishPickingImages images: [UIImage])
 optional func imagePicker(_ picker: OpalImagePickerController, didFinishPickingAssets assets: [PHAsset])
 optional func imagePickerDidCancel(_ picker: OpalImagePickerController)
 ```
 
-**OpalImagePicker** also allows you to use external images. You may want to use images from Facebook, Instagram, or Twitter for example. You can do this either using the delegate methods below or the following function in Swift **presentOpalImagePickerController(_: animated: maximumSelectionsAllowed: numberOfExternalItems: externalItemsTitle: externalURLForIndex: selectImages: selectAssets: selectExternalURLs: cancel: completion:)** function.
+**OpalImagePicker** also allows you to use external images. You may want to use images from Facebook, Instagram, or Twitter for example. You can do this either using the delegate methods below or the following function in Swift **presentOpalImagePickerController(_: animated: maximumSelectionsAllowed: numberOfExternalItems: externalItemsTitle: externalURLForIndex: selectAssets: selectExternalURLs: cancel: completion:)** function.
 
 ```swift
-optional func imagePicker(_ picker: OpalImagePickerController, didFinishPickingImages images: [UIImage])
 optional func imagePickerNumberOfExternalItems(_ picker: OpalImagePickerController) -> Int
 optional func imagePicker(_ picker: OpalImagePickerController, imageURLforExternalItemAtIndex index: Int) -> URL?    
 optional func imagePickerTitleForExternalItems(_ picker: OpalImagePickerController) -> String

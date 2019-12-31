@@ -8,6 +8,7 @@
 
 import UIKit
 import OpalImagePicker
+import Photos
 
 class DelegateExampleViewController: UIViewController {
     @IBAction func photoLibraryTapped(_ sender: UIButton) {
@@ -24,7 +25,7 @@ extension DelegateExampleViewController: OpalImagePickerControllerDelegate {
         //Cancel action?
     }
     
-    func imagePicker(_ picker: OpalImagePickerController, didFinishPickingImages images: [UIImage]) {
+    func imagePicker(_ picker: OpalImagePickerController, didFinishPickingAssets assets: [PHAsset]) {
         //Save Images, update UI
         
         //Dismiss Controller

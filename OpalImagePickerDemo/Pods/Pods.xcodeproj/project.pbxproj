@@ -394,6 +394,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
 			productRefGroup = A49A5B1C94592585345959DF696E0D94 /* Products */;
@@ -638,6 +639,23 @@
 			};
 			name = Release;
 		};
+		683EE7504E9C0B79C2F38DADF6D240C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8A12B9034CD98345CDB15D9E1F174A05 /* OpalImagePicker.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/OpalImagePicker";
+				IBSC_MODULE = OpalImagePicker;
+				INFOPLIST_FILE = "Target Support Files/OpalImagePicker/ResourceBundle-OpalImagePickerResources-OpalImagePicker-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_NAME = OpalImagePickerResources;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 		7A3917C6F3F1588A95DD0A53EA6B0636 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8A12B9034CD98345CDB15D9E1F174A05 /* OpalImagePicker.xcconfig */;
@@ -793,12 +811,13 @@
 			};
 			name = Debug;
 		};
-		AF97A1A69B35644E529FD295D34B0B21 /* Release */ = {
+		AAA0AF27D04DBF295C94C72F7267DA7E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8A12B9034CD98345CDB15D9E1F174A05 /* OpalImagePicker.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/OpalImagePicker";
+				IBSC_MODULE = OpalImagePicker;
 				INFOPLIST_FILE = "Target Support Files/OpalImagePicker/ResourceBundle-OpalImagePickerResources-OpalImagePicker-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = OpalImagePickerResources;
@@ -807,7 +826,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = bundle;
 			};
-			name = Release;
+			name = Debug;
 		};
 		CC02F337FB1D70F9A2B20E111F2DD65C /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -842,22 +861,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
-		};
-		F203FB858C527B4DEA95121AF33E4D30 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8A12B9034CD98345CDB15D9E1F174A05 /* OpalImagePicker.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/OpalImagePicker";
-				INFOPLIST_FILE = "Target Support Files/OpalImagePicker/ResourceBundle-OpalImagePickerResources-OpalImagePicker-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_NAME = OpalImagePickerResources;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
@@ -901,8 +904,8 @@
 		F1C93D28A53732A0D6C1FED3DDEF8781 /* Build configuration list for PBXNativeTarget "OpalImagePicker-OpalImagePickerResources" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F203FB858C527B4DEA95121AF33E4D30 /* Debug */,
-				AF97A1A69B35644E529FD295D34B0B21 /* Release */,
+				AAA0AF27D04DBF295C94C72F7267DA7E /* Debug */,
+				683EE7504E9C0B79C2F38DADF6D240C2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

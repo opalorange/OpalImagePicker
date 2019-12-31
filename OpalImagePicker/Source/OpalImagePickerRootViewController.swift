@@ -116,6 +116,7 @@ open class OpalImagePickerRootViewController: UIViewController {
         return delegate?.imagePickerNumberOfExternalItems?(imagePicker) != nil
     }
     
+    private var isCompleted = false
     private var photosCompleted = 0
     private var savedImages: [UIImage] = []
     private var imagesDict: [IndexPath: UIImage] = [:]
@@ -130,7 +131,7 @@ open class OpalImagePickerRootViewController: UIViewController {
         return cache
     }()
     
-    fileprivate weak var rightExternalCollectionViewConstraint: NSLayoutConstraint?
+    private weak var rightExternalCollectionViewConstraint: NSLayoutConstraint?
     
     /// Initializer
     public required init() {
@@ -268,6 +269,11 @@ open class OpalImagePickerRootViewController: UIViewController {
         self.doneButton = doneButton
     }
     
+    open override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        isCompleted = false
+    }
+    
     @objc func cancelTapped() {
         dismiss(animated: true) { [weak self] in
             guard let imagePicker = self?.navigationController as? OpalImagePickerController else { return }
@@ -276,7 +282,8 @@ open class OpalImagePickerRootViewController: UIViewController {
     }
     
     @objc func doneTapped() {
-        guard let imagePicker = navigationController as? OpalImagePickerController else { return }
+        guard let imagePicker = navigationController as? OpalImagePickerController,
+            !isCompleted else { return }
         
         let indexPathsForSelectedItems = selectedIndexPaths
         let externalIndexPaths = externalSelectedIndexPaths

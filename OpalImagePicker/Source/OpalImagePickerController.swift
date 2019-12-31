@@ -19,6 +19,7 @@ import Photos
     /// - Parameters:
     ///   - picker: the `OpalImagePickerController`
     ///   - images: the array of `UIImage`
+    @available(*, deprecated, message: "This function will be removed from future versions. Please switch to using `imagePicker(_,didFinishPickingAssets)`, and download `UIImage` using the `PHAsset` APIs.")
     @objc optional func imagePicker(_ picker: OpalImagePickerController, didFinishPickingImages images: [UIImage])
     
     /// Image Picker did finish picking images. Provides an array of `PHAsset` selected.
