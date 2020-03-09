@@ -118,7 +118,7 @@ open class OpalImagePickerRootViewController: UIViewController {
     
     private var isCompleted = false
     private var photosCompleted = 0
-    private var savedImages: [UIImage] = []
+    private var savedPHAssets: [UIImage] = []
     private var imagesDict: [IndexPath: UIImage] = [:]
     private var showExternalImages = false
     private var selectedIndexPaths: [IndexPath] = []
@@ -307,28 +307,13 @@ open class OpalImagePickerRootViewController: UIViewController {
         delegate?.imagePicker?(imagePicker, didFinishPickingExternalURLs: selectedURLs)
         
         guard shouldExpandImagesFromAssets() else { return }
-        let manager = PHImageManager.default()
-        let options = PHImageRequestOptions()
-        options.deliveryMode = .highQualityFormat
-        options.isSynchronous = true
-        options.isNetworkAccessAllowed = true
-        
-        for asset in photoAssets {
-            manager.requestImageData(for: asset, options: options, resultHandler: { [weak self] (data, _, _, _) in
-                guard let strongSelf = self,
-                    let data = data,
-                    let image = UIImage(data: data) else { return }
-                strongSelf.savedImages += [image]
-            })
-        }
-        delegate?.imagePicker?(imagePicker, didFinishPickingImages: savedImages)
-        savedImages = []
+        delegate?.imagePicker?(imagePicker, didFinishPickingAssets: photoAssets)
     }
     
     private func shouldExpandImagesFromAssets() -> Bool {
         //Only expand images if didFinishPickingAssets is implemented in delegate.
         if let delegate = self.delegate as? NSObject,
-            delegate.responds(to: #selector(OpalImagePickerControllerDelegate.imagePicker(_:didFinishPickingImages:))) {
+            delegate.responds(to: #selector(OpalImagePickerControllerDelegate.imagePicker(_:didFinishPickingAssets:))) {
             return true
         } else if !(delegate is NSObject) {
             return true
@@ -341,7 +326,7 @@ open class OpalImagePickerRootViewController: UIViewController {
         
         // Only store images if delegate method is implemented
         if let nsDelegate = delegate as? NSObject,
-            !nsDelegate.responds(to: #selector(OpalImagePickerControllerDelegate.imagePicker(_:didFinishPickingImages:))) {
+            !nsDelegate.responds(to: #selector(OpalImagePickerControllerDelegate.imagePicker(_:didFinishPickingAssets:))) {
             return
         }
         
@@ -554,3 +539,4 @@ extension OpalImagePickerRootViewController: UICollectionViewDataSource {
         }
     }
 }
+
