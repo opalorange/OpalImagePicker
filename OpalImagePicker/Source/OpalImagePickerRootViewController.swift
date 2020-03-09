@@ -539,4 +539,3 @@ extension OpalImagePickerRootViewController: UICollectionViewDataSource {
         }
     }
 }
-
