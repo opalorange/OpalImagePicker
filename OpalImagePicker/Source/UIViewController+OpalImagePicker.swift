@@ -44,7 +44,7 @@ public extension UIViewController {
     func presentOpalImagePickerController(_ imagePicker: OpalImagePickerController, animated: Bool, maximumSelectionsAllowed: Int = 10, numberOfExternalItems: Int, externalItemsTitle: String, externalURLForIndex: @escaping (Int) -> URL?, selectImages: (([UIImage]) -> Void)? = nil, selectAssets: (([PHAsset]) -> Void)? = nil, selectExternalURLs: (([URL]) -> Void)? = nil, cancel: @escaping () -> Void, completion: (() -> Void)? = nil) {
         let manager = OpalImagePickerWithExternalItemsManager.sharedWithExternalItems
         
-        if (selectImages != nil) {
+        if selectImages != nil {
             print("The `selectImages` parameter will be removed in future versions. Please switch to using `selectAssets`, and download `UIImage` using the `PHAsset` APIs.")
         }
         
