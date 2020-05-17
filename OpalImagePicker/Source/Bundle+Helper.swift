@@ -13,15 +13,10 @@ extension Bundle {
         
         let bundleForClass = Bundle(for: forClass)
         
-        if let bundleURL = bundleForClass.url(forResource: "OpalImagePickerResources", withExtension: "bundle") {
-            if let bundle = Bundle(url: bundleURL) {
+        if let bundleURL = bundleForClass.url(forResource: "OpalImagePickerResources", withExtension: "bundle"),
+            let bundle = Bundle(url: bundleURL) {
                 return bundle
-            } else {
-                assertionFailure("Could not load the bundle")
             }
-        } else {
-            assertionFailure("Could not create a path to the bundle")
-        }
         return nil
     }
 }

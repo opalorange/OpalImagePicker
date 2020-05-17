@@ -19,4 +19,15 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func launchPicker(_ sender: Any) {
+        let imagePicker = OpalImagePickerController()
+        presentOpalImagePickerController(imagePicker, animated: true,
+            select: { (assets) in
+                //Select Assets
+                 self.dismiss(animated: true, completion: nil)
+            }, cancel: {
+                //Cancel
+            })
+    }
 }
