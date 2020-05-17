@@ -1,3 +1,10 @@
+## [3.0.0](https://github.com/opalorange/OpalImagePicker/releases/tag/3.0.0)
+Released on 2020-05-17
+
+- Bugfix: PHAssetMediaSubtype.photoScreenshot not accessible in iOS 12.4 version #60
+- Bugfix: Deprecated function #56
+
+
 ## [2.1.2](https://github.com/opalorange/OpalImagePicker/releases/tag/2.1.2)
 Released on 2019-12-31
 
