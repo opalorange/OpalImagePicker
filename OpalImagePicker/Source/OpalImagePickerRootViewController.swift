@@ -238,7 +238,7 @@ open class OpalImagePickerRootViewController: UIViewController {
         }
         
         if let allowedMediaSubtypes = self.allowedMediaSubtypes {
-            let mediaSubtypes = NSPredicate(format: "mediaSubtypes = %d", allowedMediaSubtypes.rawValue)
+            let mediaSubtypes = NSPredicate(format: "(mediaSubtype & %d) == 0", allowedMediaSubtypes.rawValue)
             predicates += [mediaSubtypes]
         }
         
