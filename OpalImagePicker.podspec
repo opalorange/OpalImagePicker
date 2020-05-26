@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author       = { "opalorange" => "kris@opalorange.com" }
   s.requires_arc = true
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '10.0'
   s.source       = { :git => "https://github.com/opalorange/OpalImagePicker.git", :tag => s.version }
   s.source_files  = "OpalImagePicker/Source/*.swift"
   s.resource_bundles = { 'OpalImagePickerResources' => ['OpalImagePicker/SupportingFiles/**/*.xcassets'] }
