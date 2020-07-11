@@ -211,11 +211,17 @@ open class OpalImagePickerRootViewController: UIViewController {
             tabSegmentedControl.setTitle(title, forSegmentAt: 1)
         }
         
+        var topLayout = topLayoutGuide
+        
+        if #available(iOS 11.0, *) {
+            topLayout = view.safeAreaLayoutGuide.topAnchor as! UILayoutSupport
+        }
+        
         NSLayoutConstraint.activate([
-            toolbar.constraintEqualTo(with: topLayoutGuide, receiverAttribute: .top, otherAttribute: .bottom),
+            toolbar.constraintEqualTo(with: topLayout, receiverAttribute: .top, otherAttribute: .bottom),
             toolbar.constraintEqualTo(with: view, attribute: .left),
             toolbar.constraintEqualTo(with: view, attribute: .right)
-            ])
+        ])
     }
     
     private func fetchPhotos() {
